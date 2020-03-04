@@ -1,0 +1,42 @@
+a {
+  cursor: pointer;
+}
+td a {
+  margin: 0 10px;
+}
+td a:first-child {
+  margin-left: 0;
+}
+.alert .close {
+  line-height: 1.5;
+}
+span.pass_eye {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+}
+
+#ProfileDisplay {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.avatar {
+  position: relative;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+.imgicon {
+  bottom: 5px;
+  position: absolute;
+  left: 65px;
+  background-color: #9c27b0;
+  color: white;
+  padding: 5px 6px;
+  border-radius: 50%;
+}

@@ -4,6 +4,12 @@
 <?php
 //  include header file
 include '../dashboard_includes/header.php';
+if (!isset($_SESSION["email"]) && !isset($_SESSION["username"]) && !isset($_SESSION["name"]) && !isset($_SESSION["university"])) {
+    $_SESSION["email"] = "";
+    $_SESSION["username"] = "";
+    $_SESSION["name"] = "";
+    $_SESSION["university"] = "";
+}
 ?>
 <style>
     body {
@@ -37,7 +43,6 @@ include '../dashboard_includes/header.php';
             <div class="card card-nav-tabs">
                 <h4 class="card-header card-header-primary">Registration</h4>
                 <div class="card-body">
-
                     <!-- if session found echo that with alert -->
                     <?php if (isset($_SESSION["success"])) : ?>
 
@@ -54,7 +59,7 @@ include '../dashboard_includes/header.php';
                     <form action="/admin/auth/reg_post.php" method="POST">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input name="email" type="email" class="form-control" id="email">
+                            <input name="email" type="email" class="form-control" id="email" value="<?= $_SESSION['email'] ?>">
                             <!-- if session found echo that with alert -->
                             <?php if (isset($_SESSION["emerr"])) : ?>
 
@@ -67,18 +72,6 @@ include '../dashboard_includes/header.php';
 
                             <?php endif;
                             unset($_SESSION["emerr"]) ?>
-                            <!-- if session found echo that with alert -->
-                            <?php if (isset($_SESSION["emFerr"])) : ?>
-
-                                <div class="alert alert-info  alert-dismissible fade show" role="alert">
-                                    <?= $_SESSION["emFerr"] ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                            <?php endif;
-                            unset($_SESSION["emFerr"]) ?>
                             <!-- if session found echo that with alert -->
                             <?php if (isset($_SESSION["emDerr"])) : ?>
 
@@ -94,7 +87,7 @@ include '../dashboard_includes/header.php';
                         </div>
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input name="username" type="text" class="form-control" id="username">
+                            <input name="username" type="text" class="form-control" id="username" value="<?= $_SESSION['username'] ?>">
                             <!-- if session found echo that with alert -->
                             <?php if (isset($_SESSION["uerr"])) : ?>
 
@@ -122,7 +115,7 @@ include '../dashboard_includes/header.php';
                         </div>
                         <div class="form-group">
                             <label for="fname">Full Name</label>
-                            <input name="fname" type="text" class="form-control" id="fname">
+                            <input name="fname" type="text" class="form-control" id="fname" value="<?= $_SESSION['name'] ?>">
                             <!-- if session found echo that with alert -->
                             <?php if (isset($_SESSION["fnerr"])) : ?>
 
@@ -138,7 +131,7 @@ include '../dashboard_includes/header.php';
                         </div>
                         <div class="form-group">
                             <label for="university">Name of University</label>
-                            <input name="university" type="text" class="form-control" id="university">
+                            <input name="university" type="text" class="form-control" id="university" value="<?= $_SESSION['university'] ?>">
                             <!-- if session found echo that with alert -->
                             <?php if (isset($_SESSION["unierr"])) : ?>
 

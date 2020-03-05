@@ -24,6 +24,7 @@
         <a href="#" class="simple-text logo-normal">
             <img class="ppimg" src="<?= $_SESSION["img_dir"] ?>" alt=""> <?= $_SESSION["names"] ?>
         </a>
+        <div class="text-center"><?= role($_SESSION["role"]) ?></div>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">

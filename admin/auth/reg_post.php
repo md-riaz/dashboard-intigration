@@ -21,6 +21,12 @@ $re_pass = test_input($_POST['re-password']);
 $gender = test_input($_POST['gender']);
 $hash_pass = password_hash($pass, PASSWORD_DEFAULT); //Convert password to hash
 
+//Sessions for Form values
+$_SESSION["email"] = $email;
+$_SESSION["username"] = $username;
+$_SESSION["name"] = $name;
+$_SESSION["university"] = $university;
+
 //Password Checking funtions
 $regex = '/^[a-zA-Z\s\d\.]+$/';
 // ^ Start
@@ -43,7 +49,7 @@ if (empty($email)) {
     $o++;
 } else {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION["emFerr"] = "Email Format is invalid!!";
+        $_SESSION["emerr"] = "Email Format is invalid!!";
         $o++;
     }
 }

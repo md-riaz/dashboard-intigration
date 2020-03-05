@@ -90,14 +90,18 @@ include  'dashboard_includes/session_check.php';
                     <div class="card card-profile">
                         <div class="card-avatar">
                             <a href="javascript:;">
-                                <img class="img" src="/admin/dashboard_assets/img/faces/marc.jpg">
+                                <img class="img" src="<?= $_SESSION["img_dir"] ?>" style="width: 130px;height: 130px;">
                             </a>
                         </div>
                         <div class="card-body">
-                            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-                            <h4 class="card-title">Alec Thompson</h4>
+                            <h6 class="card-category text-gray"><?= role($_SESSION["role"]) ?></h6>
+                            <h4 class="card-title"><?= $_SESSION["names"] ?></h4>
                             <p class="card-description">
-                                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                                Username :- <?= $_SESSION["usernames"] ?><br>
+                                Email :- <?= $_SESSION["emails"] ?><br>
+                                University :- <?= $_SESSION["university"] ?><br>
+                                Gender :- <?= $_SESSION["gender"] ?><br>
+                                <?= $_SESSION["about"] ?>
                             </p>
                             <a href="javascript:;" class="btn btn-primary btn-round">Follow</a>
                         </div>

@@ -72,7 +72,7 @@ if (empty($email)) {
     $o++;
 } else {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION["emFerr"] = "Email Format is invalid!!";
+        $_SESSION["emerr"] = "Email Format is invalid!!";
         $o++;
     }
 }
@@ -138,7 +138,8 @@ if ($o != 0) {
                 $_SESSION["success"] = "You have successfully updated your info.";
                 header("location:/admin/all_users.php");
             } else {
-                echo "failed";
+                echo "failed to update";
+                header("location:/admin/auth/edit_user_post.php?id=$id");
             }
         }
     }

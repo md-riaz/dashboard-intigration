@@ -131,13 +131,37 @@ $run_query = mysqli_query($db_connect, $select_data);
 
                 <div class="alert alert-info  alert-dismissible fade show" role="alert">
                     <?= $_SESSION["typeerr"] ?>
-                    <button type="serr" class="close" data-dismiss="alert" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
             <?php endif;
             unset($_SESSION["serr"]) ?>
+            <!-- if session found echo that with alert -->
+            <?php if (isset($_SESSION["serr"])) : ?>
+
+                <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                    <?= $_SESSION["typeerr"] ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            <?php endif;
+            unset($_SESSION["serr"]) ?>
+            <!-- if session found echo that with alert -->
+            <?php if (isset($_SESSION["success"])) : ?>
+
+                <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                    <?= $_SESSION["success"] ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            <?php endif;
+            unset($_SESSION["success"]) ?>
 
             <div class="row">
                 <div class="col-lg-12">
@@ -154,25 +178,30 @@ $run_query = mysqli_query($db_connect, $select_data);
                                         <th>Name</th>
                                         <th>Username</th>
                                         <th>Email Address</th>
-                                        <th>Gender</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <!-- Loop through all rows from database -->
-                                    <?php foreach ($run_query as $value) : ?>
+                                    <?php foreach ($run_query as $user) : ?>
                                         <tr>
                                             <!-- echo a colunm -->
-                                            <td><?= $value['id'] ?></td>
-                                            <td><?= $value['names'] ?></td>
-                                            <td><?= $value['usernames'] ?></td>
-                                            <td><?= $value['emails'] ?></td>
-                                            <td><?= $value['gender'] ?></td>
+                                            <td><?= $user['id'] ?></td>
+                                            <td><?= $user['names'] ?></td>
+                                            <td><?= $user['usernames'] ?></td>
+                                            <td><?= $user['emails'] ?></td>
+                                            <td><?= role($user['role']) ?></td>
                                             <td>
                                                 <!-- pass the value of id with session -->
-                                                <a title="View" href="/admin/profile.php?id=<?= $value['id'] ?>"><span class="text-info"><i class="far fa-address-card"></i></span></a>
-                                                <a title="Edit" href="/admin/user.php?id=<?= $value['id'] ?>"><span class="text-warning"><i class="far fa-edit"></i></span></a>
-                                                <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                                <a title="View" href="/admin/profile.php?id=<?= $user['id'] ?>"><span class="text-info"><i class="far fa-address-card"></i></span></a>
+
+                                                <?php if ($user['role'] == 1 && $user['role'] == 2 && $user['role'] == 3) : ?>
+                                                    <a title="Edit" href="/admin/user.php?id=<?= $user['id'] ?>"><span class="text-warning"><i class="far fa-edit"></i></span></a>
+                                                <?php endif; ?>
+                                                <?php if ($user['role'] == 1) : ?>
+                                                    <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
@@ -199,7 +228,7 @@ $run_query = mysqli_query($db_connect, $select_data);
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger">Save changes</button>
+                            <a href="/admin/auth/delete_user.php?id=<?= $user['id'] ?>" type="button" class="btn btn-danger text-white">Save changes</a>
                         </div>
                     </div>
                 </div>

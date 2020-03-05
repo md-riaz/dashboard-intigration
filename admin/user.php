@@ -105,12 +105,36 @@ $user = mysqli_fetch_assoc($run_query);
                                             <label class="bmd-label-floating">Username</label>
                                             <input type="text" class="form-control" name="username" value="<?= $user['usernames']; ?>">
                                         </div>
+                                        <!-- if session found echo that with alert -->
+                                        <?php if (isset($_SESSION["uerr"])) : ?>
+
+                                            <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                                <?= $_SESSION["uerr"] ?>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                        <?php endif;
+                                        unset($_SESSION["uerr"]) ?>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating">Email address</label>
                                             <input type="email" class="form-control" name="email" value="<?= $user['emails']; ?>">
                                         </div>
+                                        <!-- if session found echo that with alert -->
+                                        <?php if (isset($_SESSION["emerr"])) : ?>
+
+                                            <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                                <?= $_SESSION["emerr"] ?>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                        <?php endif;
+                                        unset($_SESSION["emerr"]) ?>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -120,6 +144,18 @@ $user = mysqli_fetch_assoc($run_query);
                                             <input type="text" class="form-control" name="name" value="<?= $user['names']; ?>">
                                         </div>
                                     </div>
+                                    <!-- if session found echo that with alert -->
+                                    <?php if (isset($_SESSION["fnerr"])) : ?>
+
+                                        <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                            <?= $_SESSION["fnerr"] ?>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                    <?php endif;
+                                    unset($_SESSION["fnerr"]) ?>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -128,6 +164,18 @@ $user = mysqli_fetch_assoc($run_query);
                                             <input type="text" class="form-control" name="university" value="<?= $user['university']; ?>">
                                         </div>
                                     </div>
+                                    <!-- if session found echo that with alert -->
+                                    <?php if (isset($_SESSION["unierr"])) : ?>
+
+                                        <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                            <?= $_SESSION["unierr"] ?>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                    <?php endif;
+                                    unset($_SESSION["unierr"]) ?>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -136,6 +184,42 @@ $user = mysqli_fetch_assoc($run_query);
                                             <input type="file" name="ProfileImage" onchange="displayImg(this)" id="ProfileImage" style="display: none">
                                             <span onclick="imgup()" class="imgicon"><i class="fas fa-plus"></i></span>
                                         </div>
+                                        <!-- if session found echo that with alert -->
+                                        <?php if (isset($_SESSION["typeerr"])) : ?>
+
+                                            <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                                <?= $_SESSION["typeerr"] ?>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                        <?php endif;
+                                        unset($_SESSION["typeerr"]) ?>
+                                        <!-- if session found echo that with alert -->
+                                        <?php if (isset($_SESSION["err"])) : ?>
+
+                                            <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                                <?= $_SESSION["err"] ?>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                        <?php endif;
+                                        unset($_SESSION["err"]) ?>
+                                        <!-- if session found echo that with alert -->
+                                        <?php if (isset($_SESSION["serr"])) : ?>
+
+                                            <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                                <?= $_SESSION["serr"] ?>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                        <?php endif;
+                                        unset($_SESSION["serr"]) ?>
                                     </div>
 
                                 </div>

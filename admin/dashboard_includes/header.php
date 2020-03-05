@@ -1,6 +1,21 @@
 <?php
 session_start();
 include  'db.php';
+
+function role($role)
+{
+    if ($role == 1) {
+        echo "Admin";
+    } else if ($role == 2) {
+        echo "Moderator";
+    } else if ($role == 3) {
+        echo "Editor";
+    } else {
+        echo "User";
+    }
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -38,11 +38,17 @@
         }
     }
     // if img src is empty then show placeholder img 
-    var img = document.querySelector("img");
-    var imgsrc = img.getAttribute('src');
-    if (imgsrc == "") {
-        img.setAttribute("src", "https://i.postimg.cc/Jn6LHkYM/img-placeholder.png");
-    }
+    var img = document.querySelectorAll("img");
+
+    img.forEach(e => {
+        var imgsrc = e.getAttribute('src');
+        if (imgsrc == "") {
+            e.setAttribute("src", "https://i.postimg.cc/Jn6LHkYM/img-placeholder.png");
+            e.style.objectFit = "cover";
+        }
+    });
+
+
 
 
     function change_eye(data) {

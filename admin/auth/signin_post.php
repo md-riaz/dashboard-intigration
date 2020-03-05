@@ -13,7 +13,7 @@ function test_input($data)
 $email = test_input($_POST['email']);
 $pass = test_input($_POST['password']);
 
-$select_data = "SELECT COUNT(*) as exist, id, usernames,img_dir,emails,names,role FROM `users` WHERE emails = '$email'";
+$select_data = "SELECT COUNT(*) as exist, id, usernames,img_dir,emails,names,role,about,university,gender FROM `users` WHERE emails = '$email'";
 
 //run that query
 $run_query = mysqli_query($db_connect, $select_data);
@@ -24,15 +24,21 @@ if ($get_data['exist'] == 1) {
     $run_query = mysqli_query($db_connect, $select_data);
     $get_data = mysqli_fetch_assoc($run_query);
 
+    //Save values in session for later use
     $_SESSION["id"] = $get_data['id'];
-    $_SESSION["username"] = $get_data['usernames'];
+    $_SESSION["usernames"] = $get_data['usernames'];
     $_SESSION["img_dir"] = $get_data['img_dir'];
     $_SESSION["emails"] = $get_data['emails'];
     $_SESSION["names"] = $get_data['names'];
+    $_SESSION["university"] = $get_data['university'];
+    $_SESSION["about"] = $get_data['about'];
+    $_SESSION["gender"] = $get_data['gender'];
     $_SESSION["role"] = $get_data['role'];
 
     if (password_verify($pass, $get_data['passwords'])) {
         header("location:/admin/auth/dashboard.php");
+        //set cookie for 60 minutes
+        setcookie("login", "logged", time() + 10000);
         $_SESSION["login"] = "logged";
     } else {
         header("location:/admin/auth/signin.php");

@@ -122,7 +122,7 @@ include '../dashboard_includes/session_check.php';
     $.notify({
       icon: "<?= $_SESSION['img_dir'] ?>",
       title: "<?= $_SESSION['names'] ?>",
-      message: 'You are wellcome to this page.'
+      message: 'Welcome to dashboard <mark> <?= $_SESSION['names'] ?></mark>.'
     }, {
       type: 'minimalist',
       delay: 5000,

@@ -77,10 +77,10 @@ $user = mysqli_fetch_assoc($run_query);
                             </p>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="/admin/profile.php">Profile</a>
                             <a class="dropdown-item" href="#">Settings</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Log out</a>
+                            <a class="dropdown-item" href="/admin/auth/logout.php">Log out</a>
                         </div>
                     </li>
                 </ul>

@@ -194,12 +194,12 @@ $run_query = mysqli_query($db_connect, $select_data);
                                             <td><?= role($user['role']) ?></td>
                                             <td>
                                                 <!-- pass the value of id with session -->
-                                                <a title="View" href="/admin/profile.php?id=<?= $user['id'] ?>"><span class="text-info"><i class="far fa-address-card"></i></span></a>
+                                                <a title="View" href="/admin/user_profile.php?id=<?= $user['id'] ?>"><span class="text-info"><i class="far fa-address-card"></i></span></a>
 
-                                                <?php if ($user['role'] == 1 && $user['role'] == 2 && $user['role'] == 3) : ?>
+                                                <?php if ($_SESSION["role"] == 1 || $_SESSION["role"] == 2 || $_SESSION["role"] == 3) : ?>
                                                     <a title="Edit" href="/admin/user.php?id=<?= $user['id'] ?>"><span class="text-warning"><i class="far fa-edit"></i></span></a>
                                                 <?php endif; ?>
-                                                <?php if ($user['role'] == 1) : ?>
+                                                <?php if ($_SESSION["role"] == 1) : ?>
                                                     <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
                                                 <?php endif; ?>
                                             </td>

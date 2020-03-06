@@ -38,7 +38,7 @@ if ($get_data['exist'] == 1) {
     if (password_verify($pass, $get_data['passwords'])) {
         header("location:/admin/auth/dashboard.php");
         //set cookie for 60 minutes
-        setcookie("login", "logged", time() + 10000);
+        setcookie("login", "logged", time() + (86400 * 30), "/");
         $_SESSION["login"] = "logged";
     } else {
         header("location:/admin/auth/signin.php");

@@ -4,7 +4,7 @@
 <?php
 //  include header file
 include '../dashboard_includes/header.php';
-if (!isset($_SESSION["email"]) && !isset($_SESSION["username"]) && !isset($_SESSION["name"]) && !isset($_SESSION["university"])) {
+if (!isset($_SESSION["email"]) || !isset($_SESSION["username"]) || !isset($_SESSION["name"]) || !isset($_SESSION["university"])) {
     $_SESSION["email"] = "";
     $_SESSION["username"] = "";
     $_SESSION["name"] = "";

@@ -2,6 +2,7 @@
 session_start();
 include  'db.php';
 
+//Check role
 function role($role)
 {
     if ($role == 1) {

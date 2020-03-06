@@ -63,44 +63,49 @@ $email = test_input($_POST['email']);
 $name = test_input($_POST['name']);
 $university = test_input($_POST['university']);
 $about = test_input($_POST['about']);
+var_dump($username);
+var_dump($email);
+var_dump($name);
+var_dump($university);
+var_dump($about);
 
 //if any error increment this
-$o = 0;
+$err = 0;
 
 if (empty($email)) {
     $_SESSION["emerr"] = "Email is required";
-    $o++;
+    $err++;
 } else {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION["emerr"] = "Email Format is invalid!!";
-        $o++;
+        $err++;
     }
 }
 
 if (empty($username)) {
     $_SESSION["uerr"] = "Username field is required";
-    $o++;
+    $err++;
 } else {
     if (!preg_match('/^[a-zA-Z\d\.]+$/', $username)) {
         $_SESSION["uerr"] = "Username can cantain only alphanumeric characters";
-        $o++;
+        $err++;
     }
 }
 
 if (empty($name)) {
     $_SESSION["fnerr"] = "Name is required";
-    $o++;
+    $err++;
 }
 
 if (empty($university)) {
     $_SESSION["unierr"] = "Institute name is empty!!";
-    $o++;
+    $err++;
 }
 
-
-// if any error found then go to previews page else check data for duplicates and if no duplicate then insert to database
-if ($o != 0) {
+// if any error found then go to previews page else check data for duplicates and if no duplicate then insert to database   
+if ($err != 0) {
     header("location:/admin/user.php?id=$id");
+    echo "text";
 } else {
     //Check email for double in database
     $check_double = "SELECT COUNT(*) as duplicate FROM `users` WHERE emails = '$email'";
@@ -123,16 +128,17 @@ if ($o != 0) {
         } else {
             // update data to database
             $update_data =
-                "UPDATE `users` 
-                SET `usernames`= '$username' , 
-                `img_dir`= '$img_dir', 
-                `emails` = '$email', 
-                `names` = '$name', 
-                `university` = '$university', 
-                `about` = '$about' 
-                WHERE `id` = '$id'";
+                "UPDATE `users` SET 
+            `usernames`= '$username', 
+            `img_dir`= '$img_dir', 
+            `emails` = '$email', 
+            `names` = '$name',  
+            `university` = '$university', 
+            `about` = '$about' 
+            WHERE `id` = '$id'";
 
             $run_query = mysqli_query($db_connect, $update_data);
+
 
             if ($run_query ===  TRUE) {
                 $_SESSION["success"] = "You have successfully updated your info.";

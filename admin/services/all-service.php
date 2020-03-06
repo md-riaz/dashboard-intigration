@@ -93,71 +93,68 @@ function status($status)
 
                     <div class="card card-nav-tabs">
                         <h4 class="card-header card-header-primary">All Service</h4>
-                        <form action="/admin/services/all-service-post.php" method="post">
-                            <div class="card-body table-responsive">
-                                <!-- if session found echo that with alert -->
-                                <?php if (isset($_SESSION["success"])) : ?>
+                        <div class="card-body table-responsive">
+                            <!-- if session found echo that with alert -->
+                            <?php if (isset($_SESSION["success"])) : ?>
 
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>Congrats! </strong> <?= $_SESSION["success"] ?>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Congrats! </strong> <?= $_SESSION["success"] ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
 
-                                <?php endif;
-                                unset($_SESSION["success"]) ?>
-                                <!-- if session found echo that with alert -->
-                                <?php if (isset($_SESSION["err"])) : ?>
+                            <?php endif;
+                            unset($_SESSION["success"]) ?>
+                            <!-- if session found echo that with alert -->
+                            <?php if (isset($_SESSION["err"])) : ?>
 
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Oh No! </strong> <?= $_SESSION["err"] ?>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Oh No! </strong> <?= $_SESSION["err"] ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
 
-                                <?php endif;
-                                unset($_SESSION["err"]) ?>
-                                <table class="table table-hover">
-                                    <thead class="text-primary">
+                            <?php endif;
+                            unset($_SESSION["err"]) ?>
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Sl</th>
+                                        <th>Icon</th>
+                                        <th>Title</th>
+                                        <th>Status</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Loop through all rows from database -->
+                                    <?php $count = 1;
+                                    foreach ($run_query as $service) : ?>
                                         <tr>
-                                            <th>Sl</th>
-                                            <th>Icon</th>
-                                            <th>Title</th>
-                                            <th>Status</th>
-                                            <th>Description</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Loop through all rows from database -->
-                                        <?php $count = 1;
-                                        foreach ($run_query as $service) : ?>
-                                            <tr>
-                                                <!-- echo a colunm -->
-                                                <td><?= $count++ ?></td>
-                                                <td><i class="<?= $service['service_icon'] ?>"></i></td>
-                                                <td><?= $service['service_title'] ?></td>
-                                                <td> <label class="switch">
-                                                        <input type="checkbox" name="status" value="1" <?= status($service['status']) ?>>
+                                            <!-- echo a colunm -->
+                                            <td><?= $count++ ?></td>
+                                            <td><i class="<?= $service['service_icon'] ?>"></i></td>
+                                            <td><?= $service['service_title'] ?></td>
+                                            <td><label class="switch">
+                                                    <a href="/admin/services/all-service-post.php?id=<?= $service['id'] ?>">
+                                                        <input type="checkbox" name="status" <?= status($service['status']) ?>>
                                                         <span class="slider round"></span>
-                                                    </label>
-                                                    <input type="hidden" name="id" value="<?= $service['id'] ?>">
-                                                </td>
-                                                <td><?= $service['service_details'] ?></td>
-                                                <td class="text-center">
-                                                    <!-- pass the value of id with session -->
-                                                    <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table>
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
-                                <a href="/admin/services/add-service.php"><button type="button" class="btn btn-info">Add New</button></a>
-                            </div>
-                        </form>
+                                                    </a>
+                                                </label>
+                                            </td>
+                                            <td><?= $service['service_details'] ?></td>
+                                            <td class="text-center">
+                                                <!-- pass the value of id with session -->
+                                                <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

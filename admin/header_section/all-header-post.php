@@ -1,13 +1,14 @@
 <?php
 session_start();
 include '../dashboard_includes/db.php';
+$id = $_GET["id"];
+$select = "SELECT * FROM `header` WHERE `id` = $id";
+$sql = mysqli_query($db_connect, $select);
+$header = mysqli_fetch_assoc($sql);
+//if status is 0 then update to 1 or reverse
+$header['status'] == 0 ? $status = 1 : $status = 0;
 
-$status = $id = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = (int) $_POST["id"];
-    $status = $_POST["status"];
-    $status == 1 ? $status = 1 : $status = 0;
-}
+
 
 $update_data = "UPDATE `header` SET `status`= $status WHERE `id` = $id";
 

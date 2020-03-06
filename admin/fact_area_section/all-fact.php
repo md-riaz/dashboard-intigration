@@ -93,56 +93,57 @@ function status($status)
 
                     <div class="card card-nav-tabs">
                         <h4 class="card-header card-header-primary">All Header Info</h4>
-                        <div class="card-body table-responsive">
-                            <!-- if session found echo that with alert -->
-                            <?php if (isset($_SESSION["success"])) : ?>
+                        <form action="/admin/header_section/all-header-post.php" method="post">
+                            <div class="card-body table-responsive">
+                                <!-- if session found echo that with alert -->
+                                <?php if (isset($_SESSION["success"])) : ?>
 
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <strong>Congrats! </strong> <?= $_SESSION["success"] ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Congrats! </strong> <?= $_SESSION["success"] ?>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
 
-                            <?php endif;
-                            unset($_SESSION["success"]) ?>
-                            <!-- if session found echo that with alert -->
-                            <?php if (isset($_SESSION["err"])) : ?>
+                                <?php endif;
+                                unset($_SESSION["success"]) ?>
+                                <!-- if session found echo that with alert -->
+                                <?php if (isset($_SESSION["err"])) : ?>
 
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>Oh No! </strong> <?= $_SESSION["err"] ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>Oh No! </strong> <?= $_SESSION["err"] ?>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
 
-                            <?php endif;
-                            unset($_SESSION["err"]) ?>
-                            <table class="table table-hover">
-                                <thead class="text-primary">
-                                    <tr>
-                                        <th>Sl</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <!-- <th><i class="fab fa-facebook"></i></th>
+                                <?php endif;
+                                unset($_SESSION["err"]) ?>
+                                <table class="table table-hover">
+                                    <thead class="text-primary">
+                                        <tr>
+                                            <th>Sl</th>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <!-- <th><i class="fab fa-facebook"></i></th>
                                             <th><i class="fab fa-twitter"></i></th>
                                             <th><i class="fab fa-instagram"></i></th>
                                             <th><i class="fab fa-pinterest"></i></th> -->
-                                        <th>CTA Button Name</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Loop through all rows from database -->
-                                    <?php $count = 1;
-                                    foreach ($run_query as $header) : ?>
-                                        <tr>
-                                            <!-- echo a colunm -->
-                                            <td><?= $count++ ?></td>
-                                            <td><?= $header['header_title'] ?></td>
-                                            <td><?= $header['header_desp'] ?></td>
-                                            <!-- <td>
+                                            <th>CTA Button Name</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Loop through all rows from database -->
+                                        <?php $count = 1;
+                                        foreach ($run_query as $header) : ?>
+                                            <tr>
+                                                <!-- echo a colunm -->
+                                                <td><?= $count++ ?></td>
+                                                <td><?= $header['header_title'] ?></td>
+                                                <td><?= $header['header_desp'] ?></td>
+                                                <!-- <td>
                                                     <?= substr($header['fb'], 7, 15); ?>
                                                     ...</td>
                                                 <td>
@@ -154,23 +155,25 @@ function status($status)
                                                 <td>
                                                     <?= substr($header['pinterest'], 7, 15); ?>
                                                     ... </td> -->
-                                            <td><?= $header['cta_btn'] ?></td>
-                                            <td> <label class="switch">
-                                                    <a href="/admin/header_section/all-header-post.php?id=<?= $header['id'] ?>">
-                                                        <input type="checkbox" name="status" <?= status($header['status']) ?>>
+                                                <td><?= $header['cta_btn'] ?></td>
+                                                <td> <label class="switch">
+                                                        <input type="checkbox" name="status" value="1" <?= status($header['status']) ?>>
                                                         <span class="slider round"></span>
-                                                    </a>
-                                                </label>
-                                            </td>
-                                            <td class="text-center">
-                                                <!-- pass the value of id with session -->
-                                                <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach ?>
-                                </tbody>
-                            </table>
-                        </div>
+                                                    </label>
+                                                    <input type="hidden" name="id" value="<?= $header['id'] ?>">
+                                                </td>
+                                                <td class="text-center">
+                                                    <!-- pass the value of id with session -->
+                                                    <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <a href="/admin/header_section/add-header.php"><button type="button" class="btn btn-info">Add New</button></a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

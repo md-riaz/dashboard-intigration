@@ -17,7 +17,7 @@ $header_info = mysqli_fetch_assoc($header_infos);
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Kufa - Personal Portfolio HTML5 Template</title>
+    <title>Personal Portfolio HTML5 Template</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -60,7 +60,7 @@ $header_info = mysqli_fetch_assoc($header_infos);
                         <div class="main-menu">
                             <nav class="navbar navbar-expand-lg">
                                 <a href="index.php" class="navbar-brand logo-sticky-none"><img src="img/logo/mylogo.png" alt="Logo"></a>
-                                <a href="index.php" class="navbar-brand s-logo-none"><img src="img/logo/s_logo.png" alt="Logo"></a>
+                                <a href="index.php" class="navbar-brand s-logo-none"><img src="img/logo/s_mylogo.png" alt="Logo"></a>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                                     <span class="navbar-icon"></span>
                                     <span class="navbar-icon"></span>

@@ -1,27 +1,19 @@
 <head>
-    <title>All Service</title>
+    <title>Fact Area</title>
 </head>
 <?php
 //  include header file
 include '../dashboard_includes/header.php';
 include '../dashboard_includes/sidebar.php';
 include '../dashboard_includes/session_check.php';
-//Select all data from users table
-$select_data = "SELECT * FROM `header`";
-//run that query
-$run_query = mysqli_query($db_connect, $select_data);
-//Check service status
-function status($status)
-{
-    echo $status == 1 ? "Checked" : "";
-}
+
 ?>
 <div class="main-panel">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="javascript:;">Header info</a>
+                <a class="navbar-brand" href="javascript:;">Fact Area Info</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -89,11 +81,11 @@ function status($status)
         <div class="container-fluid">
             <!-- your content here -->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-10">
 
                     <div class="card card-nav-tabs">
-                        <h4 class="card-header card-header-primary">All Header Info</h4>
-                        <div class="card-body table-responsive">
+                        <h4 class="card-header card-header-primary">Fact Area Info</h4>
+                        <div class="card-body">
                             <!-- if session found echo that with alert -->
                             <?php if (isset($_SESSION["success"])) : ?>
 
@@ -118,82 +110,34 @@ function status($status)
 
                             <?php endif;
                             unset($_SESSION["err"]) ?>
-                            <table class="table table-hover">
-                                <thead class="text-primary">
-                                    <tr>
-                                        <th>Sl</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <!-- <th><i class="fab fa-facebook"></i></th>
-                                            <th><i class="fab fa-twitter"></i></th>
-                                            <th><i class="fab fa-instagram"></i></th>
-                                            <th><i class="fab fa-pinterest"></i></th> -->
-                                        <th>CTA Button Name</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Loop through all rows from database -->
-                                    <?php $count = 1;
-                                    foreach ($run_query as $header) : ?>
-                                        <tr>
-                                            <!-- echo a colunm -->
-                                            <td><?= $count++ ?></td>
-                                            <td><?= $header['header_title'] ?></td>
-                                            <td><?= $header['header_desp'] ?></td>
-                                            <!-- <td>
-                                                    <?= substr($header['fb'], 7, 15); ?>
-                                                    ...</td>
-                                                <td>
-                                                    <?= substr($header['twitter'], 7, 15); ?>
-                                                    ...</td>
-                                                <td>
-                                                    <?= substr($header['insta'], 7, 15); ?>
-                                                    ...</td>
-                                                <td>
-                                                    <?= substr($header['pinterest'], 7, 15); ?>
-                                                    ... </td> -->
-                                            <td><?= $header['cta_btn'] ?></td>
-                                            <td> <label class="switch">
-                                                    <a href="/admin/header_section/all-header-post.php?id=<?= $header['id'] ?>">
-                                                        <input type="checkbox" name="status" <?= status($header['status']) ?>>
-                                                        <span class="slider round"></span>
-                                                    </a>
-                                                </label>
-                                            </td>
-                                            <td class="text-center">
-                                                <!-- pass the value of id with session -->
-                                                <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach ?>
-                                </tbody>
-                            </table>
+
+                            <form action="add-header-post.php" method="POST">
+                                <div class="form-group bmd-form-group">
+                                    <label class="bmd-label-floating">Icon class name</label>
+                                    <input type="text" class="form-control" name="icon">
+                                </div>
+                                <div class="form-group bmd-form-group">
+                                    <label class="bmd-label-floating">Number Of Projects</label>
+                                    <input type="text" class="form-control" name="project_num">
+                                </div>
+                                <div class="form-group bmd-form-group">
+                                    <label class="bmd-label-floating">Project Topic</label>
+                                    <input type="text" class="form-control" name="topic">
+                                </div>
+                                <div class="form-group bmd-form-group">
+                                    <label for="status">Status</label><br>
+                                    <label class="switch">
+                                        <input type="checkbox" name="status" id="status" value="1">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add Fact</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">DELETE CONFIRMATION</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure you want to delete this service?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a href="/admin/header_section/delete-header.php?id=<?= $header['id'] ?>" type="button" class="btn btn-danger text-white">Save changes</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
 
         </div>

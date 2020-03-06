@@ -82,9 +82,6 @@ include '../dashboard_includes/session_check.php';
   <div class="content">
     <div class="container-fluid">
       <!-- your content here -->
-
-
-
       <div class="row">
         <div class="col-lg-12">
 
@@ -112,6 +109,7 @@ include '../dashboard_includes/session_check.php';
           </div>
         </div>
       </div>
+
     </div>
   </div>
   <?php

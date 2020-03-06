@@ -55,6 +55,7 @@ function test_input($data)
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
+    $data = str_replace("'", "''", $data);
     return $data;
 }
 //Get data from submit and test data
@@ -63,11 +64,6 @@ $email = test_input($_POST['email']);
 $name = test_input($_POST['name']);
 $university = test_input($_POST['university']);
 $about = test_input($_POST['about']);
-var_dump($username);
-var_dump($email);
-var_dump($name);
-var_dump($university);
-var_dump($about);
 
 //if any error increment this
 $err = 0;

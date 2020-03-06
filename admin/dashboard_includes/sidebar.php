@@ -47,6 +47,32 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item ">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">title</i>
+                        <p>Header</p>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/admin/header_section/add-header.php"><i class="far fa-comment-alt-plus"></i>Add header info</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/admin/header_section/all-header.php"><i class="fas fa-sitemap"></i>View Header info</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item ">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">work_outline</i>
+                        <p>Service</p>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/admin/services/add-service.php"><i class="material-icons"> work </i>Add Service</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/admin/services/all-service.php"><i class="material-icons"> view_list </i>View Service</a>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
 </div>

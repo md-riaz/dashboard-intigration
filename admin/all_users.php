@@ -7,8 +7,6 @@ include 'dashboard_includes/header.php';
 include 'dashboard_includes/sidebar.php';
 include 'dashboard_includes/session_check.php';
 
-
-
 //Select all data from users table
 $select_data = "SELECT * FROM `users`";
 //run that query

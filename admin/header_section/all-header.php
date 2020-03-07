@@ -1,5 +1,5 @@
 <head>
-    <title>All Service</title>
+    <title>All Header Info</title>
 </head>
 <?php
 //  include header file
@@ -170,6 +170,9 @@ function status($status)
                                     <?php endforeach ?>
                                 </tbody>
                             </table>
+                            <div class="alert alert-info" role="alert">
+                                Only the first active items will show on the site
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -185,7 +188,7 @@ function status($status)
                             </button>
                         </div>
                         <div class="modal-body">
-                            Are you sure you want to delete this service?
+                            Are you sure you want to delete this Header Info?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

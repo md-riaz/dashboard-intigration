@@ -90,7 +90,7 @@ include  'dashboard_includes/session_check.php';
                     <div class="card card-profile">
                         <div class="card-avatar">
                             <a href="javascript:;">
-                                <img class="img" src="<?= $_SESSION["img_dir"] ?>" style="width: 130px;height: 130px;">
+                                <img class="img" src="<?= $_SESSION["img_dir"] ?>" style="width: 130px;height: 130px;object-fit: cover;">
                             </a>
                         </div>
                         <div class="card-body">

@@ -154,6 +154,9 @@ function status($status)
                                     <?php endforeach ?>
                                 </tbody>
                             </table>
+                            <div class="alert alert-info" role="alert">
+                                Only the first maximum 6 active items will show on the site
+                            </div>
                         </div>
                     </div>
                 </div>

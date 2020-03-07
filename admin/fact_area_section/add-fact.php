@@ -111,7 +111,7 @@ include '../dashboard_includes/session_check.php';
                             <?php endif;
                             unset($_SESSION["err"]) ?>
 
-                            <form action="add-header-post.php" method="POST">
+                            <form action="add-fact-post.php" method="POST">
                                 <div class="form-group bmd-form-group">
                                     <label class="bmd-label-floating">Icon class name</label>
                                     <input type="text" class="form-control" name="icon">

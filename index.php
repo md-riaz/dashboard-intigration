@@ -3,10 +3,12 @@ include 'admin/dashboard_includes/db.php';
 //Select all data from users table
 $select_service = "SELECT * FROM `services` WHERE `status` = 1 LIMIT 6";
 $select_header = "SELECT * FROM `header` WHERE `status` = 1 LIMIT 1";
+$select_fact = "SELECT * FROM `fact_areas` WHERE `status` = 1 LIMIT 4";
 //run that query
 $services = mysqli_query($db_connect, $select_service);
 $header_infos = mysqli_query($db_connect, $select_header);
 $header_info = mysqli_fetch_assoc($header_infos);
+$facts = mysqli_query($db_connect, $select_fact);
 ?>
 
 <!doctype html>
@@ -360,50 +362,19 @@ $header_info = mysqli_fetch_assoc($header_infos);
             <div class="container">
                 <div class="fact-wrap">
                     <div class="row justify-content-between">
-                        <div class="col-xl-2 col-lg-3 col-sm-6">
-                            <div class="fact-box text-center mb-50">
-                                <div class="fact-icon">
-                                    <i class="flaticon-award"></i>
-                                </div>
-                                <div class="fact-content">
-                                    <h2><span class="count">245</span></h2>
-                                    <span>Feature Item</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-sm-6">
-                            <div class="fact-box text-center mb-50">
-                                <div class="fact-icon">
-                                    <i class="flaticon-like"></i>
-                                </div>
-                                <div class="fact-content">
-                                    <h2><span class="count">345</span></h2>
-                                    <span>Active Products</span>
+                        <?php foreach ($facts as $fact) : ?>
+                            <div class="col-xl-2 col-lg-3 col-sm-6">
+                                <div class="fact-box text-center mb-50">
+                                    <div class="fact-icon">
+                                        <i class="<?= $fact['icon'] ?>"></i>
+                                    </div>
+                                    <div class="fact-content">
+                                        <h2><span class="count"><?= $fact['project_numbers'] ?></span>k</h2>
+                                        <span><?= $fact['project_topic'] ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-sm-6">
-                            <div class="fact-box text-center mb-50">
-                                <div class="fact-icon">
-                                    <i class="flaticon-event"></i>
-                                </div>
-                                <div class="fact-content">
-                                    <h2><span class="count">39</span></h2>
-                                    <span>Year Experience</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-sm-6">
-                            <div class="fact-box text-center mb-50">
-                                <div class="fact-icon">
-                                    <i class="flaticon-woman"></i>
-                                </div>
-                                <div class="fact-content">
-                                    <h2><span class="count">3</span>k</h2>
-                                    <span>Our Clients</span>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
             </div>

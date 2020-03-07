@@ -12,6 +12,10 @@
         object-fit: cover;
         margin: 0 10px 0 0;
     }
+
+    .dropdown-toggle:after {
+        right: 40%;
+    }
 </style>
 
 <div class="sidebar" data-color="purple" data-background-color="white">
@@ -70,6 +74,19 @@
                         <a class="dropdown-item" href="/admin/services/add-service.php"><i class="material-icons"> work </i>Add Service</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/admin/services/all-service.php"><i class="material-icons"> view_list </i>View Service</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item ">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">work_outline</i>
+                        <p>Fact Area</p>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/admin/fact_area_section/add-fact.php"><i class="material-icons"> work </i>Add Fact</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/admin/fact_area_section/all-fact.php"><i class="material-icons"> view_list </i>View ALL</a>
                     </div>
                 </div>
             </li>

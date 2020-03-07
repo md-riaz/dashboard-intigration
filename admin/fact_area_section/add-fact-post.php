@@ -7,16 +7,12 @@ include '../dashboard_includes/db.php';
 /* Service Form Post */
 
 // define variables and set to empty values
-$title = $cta_btn = $description = $status = "";
+$icon = $project_num = $topic = $status = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = test_input($_POST["title"]);
-    $cta_btn = test_input($_POST["cta_btn"]);
-    $description = test_input($_POST["desp"]);
-    $fb_id = test_input($_POST["fb_id"]);
-    $twitter_id = test_input($_POST["twitter_id"]);
-    $insta_id = test_input($_POST["insta_id"]);
-    $pinterest_id = test_input($_POST["pinterest_id"]);
+    $icon = test_input($_POST["icon"]);
+    $project_num = test_input($_POST["project_num"]);
+    $topic = test_input($_POST["topic"]);
     $status = test_input($_POST["status"]);
     $status == 1 ? $status = 1 : $status = 0;
 }
@@ -30,20 +26,19 @@ function test_input($data)
     return $data;
 }
 
-if (!empty($title) && !empty($cta_btn) && !empty($description) && !empty($fb_id) && !empty($twitter_id) && !empty($insta_id) && !empty($pinterest_id)) {
-    $insert_data = "INSERT INTO `header`(`header_title`, `header_desp`,`cta_btn`,`fb`,`twitter`,`insta`,`pinterest`, `status`) VALUES ('$title', '$description','$cta_btn','$fb_id','$twitter_id','$insta_id','$pinterest_id', '$status')";
+if (!empty($icon) && !empty($project_num) && !empty($topic)) {
+    $insert_data = "INSERT INTO `fact_areas`(`icon`, `project_numbers`,`project_topic`,`status`) VALUES ('$icon', '$project_num','$topic', '$status')";
     $run_query = mysqli_query($db_connect, $insert_data);
-
     if ($run_query === TRUE) {
-        $_SESSION["success"] = "Header Info Added SuccessFully";
-        header("location: /admin/header_section/add-header.php");
+        $_SESSION["success"] = "Fact Info Added SuccessFully";
+        header("location: /admin/fact_area_section/add-fact.php");
     } else {
         $_SESSION["err"] = "Error occurred!!";
-        header("location: /admin/header_section/add-header.php");
+        header("location: /admin/fact_area_section/add-fact.php");
     }
 } else {
     $_SESSION["err"] = "Empty!!";
-    header("location: /admin/header_section/add-header.php");
+    header("location: /admin/fact_area_section/add-fact.php");
 }
 
 ?>

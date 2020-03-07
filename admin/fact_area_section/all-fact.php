@@ -1,5 +1,5 @@
 <head>
-    <title>All Service</title>
+    <title>All Facts</title>
 </head>
 <?php
 //  include header file
@@ -7,7 +7,7 @@ include '../dashboard_includes/header.php';
 include '../dashboard_includes/sidebar.php';
 include '../dashboard_includes/session_check.php';
 //Select all data from users table
-$select_data = "SELECT * FROM `header`";
+$select_data = "SELECT * FROM `fact_areas`";
 //run that query
 $run_query = mysqli_query($db_connect, $select_data);
 //Check service status
@@ -21,7 +21,7 @@ function status($status)
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
             <div class="navbar-wrapper">
-                <a class="navbar-brand" href="javascript:;">Header info</a>
+                <a class="navbar-brand" href="javascript:;">All Facts</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="sr-only">Toggle navigation</span>
@@ -92,88 +92,72 @@ function status($status)
                 <div class="col-lg-12">
 
                     <div class="card card-nav-tabs">
-                        <h4 class="card-header card-header-primary">All Header Info</h4>
-                        <form action="/admin/header_section/all-header-post.php" method="post">
-                            <div class="card-body table-responsive">
-                                <!-- if session found echo that with alert -->
-                                <?php if (isset($_SESSION["success"])) : ?>
+                        <h4 class="card-header card-header-primary">All Facts Info</h4>
+                        <div class="card-body table-responsive">
+                            <!-- if session found echo that with alert -->
+                            <?php if (isset($_SESSION["success"])) : ?>
 
-                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <strong>Congrats! </strong> <?= $_SESSION["success"] ?>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <strong>Congrats! </strong> <?= $_SESSION["success"] ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
 
-                                <?php endif;
-                                unset($_SESSION["success"]) ?>
-                                <!-- if session found echo that with alert -->
-                                <?php if (isset($_SESSION["err"])) : ?>
+                            <?php endif;
+                            unset($_SESSION["success"]) ?>
+                            <!-- if session found echo that with alert -->
+                            <?php if (isset($_SESSION["err"])) : ?>
 
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Oh No! </strong> <?= $_SESSION["err"] ?>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Oh No! </strong> <?= $_SESSION["err"] ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
 
-                                <?php endif;
-                                unset($_SESSION["err"]) ?>
-                                <table class="table table-hover">
-                                    <thead class="text-primary">
+                            <?php endif;
+                            unset($_SESSION["err"]) ?>
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Sl</th>
+                                        <th>icon</th>
+                                        <th>Number of Project</th>
+                                        <th>Project Topic</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Loop through all rows from database -->
+                                    <?php $count = 1;
+                                    foreach ($run_query as $fact) : ?>
                                         <tr>
-                                            <th>Sl</th>
-                                            <th>Title</th>
-                                            <th>Description</th>
-                                            <!-- <th><i class="fab fa-facebook"></i></th>
-                                            <th><i class="fab fa-twitter"></i></th>
-                                            <th><i class="fab fa-instagram"></i></th>
-                                            <th><i class="fab fa-pinterest"></i></th> -->
-                                            <th>CTA Button Name</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <!-- echo a colunm -->
+                                            <td><?= $count++ ?></td>
+                                            <td><i class="<?= $fact['icon'] ?>"></i></td>
+                                            <td><?= $fact['project_numbers'] ?></td>
+                                            <td><?= $fact['project_topic'] ?></td>
+                                            <td> <label class="switch">
+                                                    <a href="/admin/fact_area_section/all_fact_post.php?id=<?= $fact['id'] ?>">
+                                                        <input type="checkbox" name="status" value="1" <?= status($fact['status']) ?>>
+                                                        <span class="slider round"></span></a>
+                                                </label>
+                                                <input type="hidden" name="id" value="<?= $fact['id'] ?>">
+                                            </td>
+                                            <td class="text-center">
+                                                <!-- pass the value of id with session -->
+                                                <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Loop through all rows from database -->
-                                        <?php $count = 1;
-                                        foreach ($run_query as $header) : ?>
-                                            <tr>
-                                                <!-- echo a colunm -->
-                                                <td><?= $count++ ?></td>
-                                                <td><?= $header['header_title'] ?></td>
-                                                <td><?= $header['header_desp'] ?></td>
-                                                <!-- <td>
-                                                    <?= substr($header['fb'], 7, 15); ?>
-                                                    ...</td>
-                                                <td>
-                                                    <?= substr($header['twitter'], 7, 15); ?>
-                                                    ...</td>
-                                                <td>
-                                                    <?= substr($header['insta'], 7, 15); ?>
-                                                    ...</td>
-                                                <td>
-                                                    <?= substr($header['pinterest'], 7, 15); ?>
-                                                    ... </td> -->
-                                                <td><?= $header['cta_btn'] ?></td>
-                                                <td> <label class="switch">
-                                                        <input type="checkbox" name="status" value="1" <?= status($header['status']) ?>>
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                    <input type="hidden" name="id" value="<?= $header['id'] ?>">
-                                                </td>
-                                                <td class="text-center">
-                                                    <!-- pass the value of id with session -->
-                                                    <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table>
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
-                                <a href="/admin/header_section/add-header.php"><button type="button" class="btn btn-info">Add New</button></a>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+                            <div class="alert alert-info" role="alert">
+                                Only the first maximum 4 active items will show on the site
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -192,7 +176,7 @@ function status($status)
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a href="/admin/header_section/delete-header.php?id=<?= $header['id'] ?>" type="button" class="btn btn-danger text-white">Save changes</a>
+                            <a href="/admin/header_section/delete-header.php?id=<?= $fact['id'] ?>" type="button" class="btn btn-danger text-white">Save changes</a>
                         </div>
                     </div>
                 </div>

@@ -172,11 +172,11 @@ function status($status)
                             </button>
                         </div>
                         <div class="modal-body">
-                            Are you sure you want to delete this service?
+                            Are you sure you want to delete this fact info?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a href="/admin/header_section/delete-header.php?id=<?= $fact['id'] ?>" type="button" class="btn btn-danger text-white">Save changes</a>
+                            <a href="/admin/fact_area_section/delete-fact.php?id=<?= $fact['id'] ?>" type="button" class="btn btn-danger text-white">Save changes</a>
                         </div>
                     </div>
                 </div>

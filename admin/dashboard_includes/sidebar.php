@@ -26,13 +26,13 @@
   -->
     <div class="logo">
         <a href="#" class="simple-text logo-normal">
-            <img class="ppimg" src="<?= $_SESSION["img_dir"] ?>" alt=""> <?= $_SESSION["names"] ?>
+            <img class="ppimg" src="/admin/dashboard_assets/user_img/<?= $_SESSION["img_dir"] ?>" alt=""> <?= $_SESSION["names"] ?>
         </a>
         <div class="text-center"><?= role($_SESSION["role"]) ?></div>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/admin/auth/dashboard.php">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
@@ -80,13 +80,13 @@
             <li class="nav-item ">
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons">work_outline</i>
+                        <i class="material-icons">group_work</i>
                         <p>Fact Area</p>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/admin/fact_area_section/add-fact.php"><i class="material-icons"> work </i>Add Fact</a>
+                        <a class="dropdown-item" href="/admin/fact_area_section/add-fact.php"><i class="material-icons"> playlist_add </i>Add Fact</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/admin/fact_area_section/all-fact.php"><i class="material-icons"> view_list </i>View ALL</a>
+                        <a class="dropdown-item" href="/admin/fact_area_section/all-fact.php"><i class="material-icons"> list_alt </i>View ALL</a>
                     </div>
                 </div>
             </li>

@@ -3,17 +3,13 @@ session_start(); //Session Start
 include "../dashboard_includes/db.php"; //include database connection page
 // get id value from url
 $id = $_GET["id"];
-// get username value from url
-$usernm = $_GET["user"];
 /*Image upload Validation*/
 
-$Cryptograph_alphanumeric = bin2hex(random_bytes(3)) . '__'; //This line assigns a random number to this variable.
 //get extention name
 $imageFileType = strtolower(pathinfo($_FILES['ProfileImage']['name'], PATHINFO_EXTENSION));
-//new name of img
-$new_name = $usernm;
+
 //combine file name,extention with random number & set file directory.
-$target_file = '../dashboard_assets/user_img/' . $Cryptograph_alphanumeric . $new_name . "." . $imageFileType;
+$target_file = '../dashboard_assets/user_img/' . $id . "." . $imageFileType;
 
 $uploadOk = 1; //if condition is not fullfilled set this to 0 to stop upload.
 
@@ -26,6 +22,11 @@ if (isset($_FILES["ProfileImage"])) {
     // Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
         $_SESSION["typeerr"] = "Sorry, only JPG, JPEG & PNG files are allowed.";
+        $uploadOk = 0;
+    }
+    // Allow below 1mb dile size
+    if ($_FILES['ProfileImage']['size'] > 1000000) {
+        $_SESSION["err"] = "Sorry, file size should be lower than 1MB";
         $uploadOk = 0;
     }
 
@@ -44,7 +45,7 @@ if (isset($_FILES["ProfileImage"])) {
 if ($imageFileType == "") {
     $img_dir = "";
 } else {
-    $img_dir = '/admin/dashboard_assets/user_img/' . $Cryptograph_alphanumeric . $new_name . "." . $imageFileType;
+    $img_dir =  $id . "." . $imageFileType;
 }
 /*Image upload Validation End*/
 

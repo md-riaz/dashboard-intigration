@@ -96,7 +96,7 @@ $data = mysqli_fetch_assoc($run_query);
                     <div class="card card-profile">
                         <div class="card-avatar">
                             <a href="javascript:;">
-                                <img class="img" src="<?= $data["img_dir"] ?>" style="width: 130px;height: 130px;">
+                                <img class="img" src="/admin/dashboard_assets/user_img/<?= $data["img_dir"] ?>" style="width: 130px;height: 130px;">
                             </a>
                         </div>
                         <div class="card-body">

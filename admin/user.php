@@ -98,7 +98,7 @@ $user = mysqli_fetch_assoc($run_query);
                             <p class="card-category">Complete your profile</p>
                         </div>
                         <div class="card-body">
-                            <form action="auth/edit_user_post.php?id=<?= $id ?>&user=<?= $user['usernames'] ?>" method="POST" enctype="multipart/form-data">
+                            <form action="auth/edit_user_post.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group bmd-form-group">
@@ -180,7 +180,7 @@ $user = mysqli_fetch_assoc($run_query);
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="avatar">
-                                            <img src="<?= $user['img_dir'] ?>" alt="Profile Pic" id="ProfileDisplay">
+                                            <img src="/admin/dashboard_assets/user_img/<?= $user['img_dir'] ?>" alt="Profile Pic" id="ProfileDisplay">
                                             <input type="file" name="ProfileImage" onchange="displayImg(this)" id="ProfileImage" style="display: none">
                                             <span onclick="imgup()" class="imgicon"><i class="fas fa-plus"></i></span>
                                         </div>

@@ -118,7 +118,7 @@ include '../dashboard_includes/session_check.php';
 
   <script>
     $.notify({
-      icon: "<?= $_SESSION['img_dir'] ?>",
+      icon: "/admin/dashboard_assets/user_img/<?= $_SESSION['img_dir'] ?>",
       title: "<?= $_SESSION['names'] ?>",
       message: 'Welcome to dashboard <mark> <?= $_SESSION['names'] ?></mark>.'
     }, {

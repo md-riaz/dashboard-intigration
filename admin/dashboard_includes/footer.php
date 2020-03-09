@@ -122,6 +122,34 @@
 <script src="/admin/dashboard_assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 
+
+
+<script>
+    $(document).ready(function() {
+        let nav_items = $(".nav-item");
+
+        nav_items.click((e) => {
+            nav_items.each(() => {
+                nav_items.removeClass("active");
+
+            })
+            e.currentTarget.classList.add("active");
+        })
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>

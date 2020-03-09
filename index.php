@@ -2,10 +2,13 @@
 include 'admin/dashboard_includes/db.php';
 //Select all data from users table
 $select_service = "SELECT * FROM `services` WHERE `status` = 1 LIMIT 6";
+$select_social = "SELECT * FROM `social` WHERE `id` = 1";
 $select_header = "SELECT * FROM `header` WHERE `status` = 1 LIMIT 1";
 $select_fact = "SELECT * FROM `fact_areas` WHERE `status` = 1 LIMIT 4";
 //run that query
 $services = mysqli_query($db_connect, $select_service);
+$social = mysqli_query($db_connect, $select_social);
+$social = mysqli_fetch_assoc($social);
 $header_infos = mysqli_query($db_connect, $select_header);
 $header_info = mysqli_fetch_assoc($header_infos);
 $facts = mysqli_query($db_connect, $select_fact);
@@ -114,10 +117,10 @@ $facts = mysqli_query($db_connect, $select_fact);
                 </div>
             </div>
             <div class="social-icon-right mt-20">
-                <a href="<?= $header_info['fb'] ?>"><i class="fab fa-facebook-f"></i></a>
-                <a href="<?= $header_info['twitter'] ?>"><i class="fab fa-twitter"></i></a>
-                <a href="<?= $header_info['insta'] ?>"><i class="fab fa-pinterest"></i></a>
-                <a href="<?= $header_info['pinterest'] ?>"><i class="fab fa-instagram"></i></a>
+                <a href="<?= $social['fb'] ?>"><i class="fab fa-facebook-f"></i></a>
+                <a href="<?= $social['twitter'] ?>"><i class="fab fa-twitter"></i></a>
+                <a href="<?= $social['insta'] ?>"><i class="fab fa-pinterest"></i></a>
+                <a href="<?= $social['pinterest'] ?>"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
         <div class="offcanvas-overly"></div>
@@ -139,10 +142,10 @@ $facts = mysqli_query($db_connect, $select_fact);
                             <p class="wow fadeInUp" data-wow-delay="0.6s"><?= $header_info['header_desp'] ?></p>
                             <div class="banner-social wow fadeInUp" data-wow-delay="0.8s">
                                 <ul>
-                                    <li><a href="<?= $header_info['fb'] ?>"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="<?= $header_info['twitter'] ?>"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="<?= $header_info['insta'] ?>"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="<?= $header_info['pinterest'] ?>"><i class="fab fa-pinterest"></i></a></li>
+                                    <li><a href="<?= $social['fb'] ?>"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="<?= $social['twitter'] ?>"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="<?= $social['insta'] ?>"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="<?= $social['pinterest'] ?>"><i class="fab fa-pinterest"></i></a></li>
                                 </ul>
                             </div>
                             <a href="#" class="btn wow fadeInUp" data-wow-delay="1s"><?= $header_info['cta_btn'] ?></a>

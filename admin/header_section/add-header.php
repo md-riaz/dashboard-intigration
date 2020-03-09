@@ -120,22 +120,7 @@ include '../dashboard_includes/session_check.php';
                                     <label class="bmd-label-floating">Call to action button name</label>
                                     <input type="text" class="form-control" name="cta_btn">
                                 </div>
-                                <div class="form-group bmd-form-group">
-                                    <label class="bmd-label-floating">Facebook Link</label>
-                                    <input type="text" class="form-control" name="fb_id">
-                                </div>
-                                <div class="form-group bmd-form-group">
-                                    <label class="bmd-label-floating">Twitter Link</label>
-                                    <input type="text" class="form-control" name="twitter_id">
-                                </div>
-                                <div class="form-group bmd-form-group">
-                                    <label class="bmd-label-floating">Instagram Link</label>
-                                    <input type="text" class="form-control" name="insta_id">
-                                </div>
-                                <div class="form-group bmd-form-group">
-                                    <label class="bmd-label-floating">Pinterest Link</label>
-                                    <input type="text" class="form-control" name="pinterest_id">
-                                </div>
+
                                 <div class="form-group bmd-form-group">
                                     <label>Header Description</label>
                                     <textarea row="3" class="form-control" name="desp">

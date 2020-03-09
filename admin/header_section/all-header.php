@@ -8,8 +8,11 @@ include '../dashboard_includes/sidebar.php';
 include '../dashboard_includes/session_check.php';
 //Select all data from users table
 $select_data = "SELECT * FROM `header`";
+$select_social = "SELECT * FROM `social`";
 //run that query
 $run_query = mysqli_query($db_connect, $select_data);
+$fire_query = mysqli_query($db_connect, $select_social);
+$social_link = mysqli_fetch_assoc($fire_query);
 //Check service status
 function status($status)
 {
@@ -124,10 +127,6 @@ function status($status)
                                         <th>Sl</th>
                                         <th>Title</th>
                                         <th>Description</th>
-                                        <!-- <th><i class="fab fa-facebook"></i></th>
-                                            <th><i class="fab fa-twitter"></i></th>
-                                            <th><i class="fab fa-instagram"></i></th>
-                                            <th><i class="fab fa-pinterest"></i></th> -->
                                         <th>CTA Button Name</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -142,18 +141,6 @@ function status($status)
                                             <td><?= $count++ ?></td>
                                             <td><?= $header['header_title'] ?></td>
                                             <td><?= $header['header_desp'] ?></td>
-                                            <!-- <td>
-                                                    <?= substr($header['fb'], 7, 15); ?>
-                                                    ...</td>
-                                                <td>
-                                                    <?= substr($header['twitter'], 7, 15); ?>
-                                                    ...</td>
-                                                <td>
-                                                    <?= substr($header['insta'], 7, 15); ?>
-                                                    ...</td>
-                                                <td>
-                                                    <?= substr($header['pinterest'], 7, 15); ?>
-                                                    ... </td> -->
                                             <td><?= $header['cta_btn'] ?></td>
                                             <td> <label class="switch">
                                                     <a href="/admin/header_section/all-header-post.php?id=<?= $header['id'] ?>">
@@ -170,6 +157,7 @@ function status($status)
                                     <?php endforeach ?>
                                 </tbody>
                             </table>
+                            <button data-toggle="modal" data-target="#social_triger" class="btn btn-primary"><span>Socail Info</span></button>
                             <div class="alert alert-info" role="alert">
                                 Only the first active items will show on the site
                             </div>
@@ -178,26 +166,45 @@ function status($status)
                 </div>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="social_triger" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">DELETE CONFIRMATION</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                    <form action="" method="post">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">EDIT SOCIAL LINKS</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group bmd-form-group">
+                                    <label class="bmd-label-floating">Facebook Link</label>
+                                    <input type="text" class="form-control" name="fb_id" value="<?= $social_link['fb'] ?>">
+                                </div>
+                                <div class="form-group bmd-form-group">
+                                    <label class="bmd-label-floating">Twitter Link</label>
+                                    <input type="text" class="form-control" name="twitter_id" value="<?= $social_link['twitter'] ?>">
+                                </div>
+                                <div class="form-group bmd-form-group">
+                                    <label class="bmd-label-floating">Instagram Link</label>
+                                    <input type="text" class="form-control" name="insta_id" value="<?= $social_link['insta'] ?>">
+                                </div>
+                                <div class="form-group bmd-form-group">
+                                    <label class="bmd-label-floating">Pinterest Link</label>
+                                    <input type="text" class="form-control" name="pinterest_id" value="<?= $social_link['pinterest'] ?>">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a href="/admin/header_section/social_info_post.php" type="button" class="btn btn-success text-white">Save changes</a>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            Are you sure you want to delete this Header Info?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a href="/admin/header_section/delete-header.php?id=<?= $header['id'] ?>" type="button" class="btn btn-danger text-white">Save changes</a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 
+
+            Social
 
         </div>
     </div>

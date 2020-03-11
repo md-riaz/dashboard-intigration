@@ -22,6 +22,8 @@ function role($role)
 <html lang="en">
 
 <head>
+    <!-- jQuery -->
+    <script src="/admin/dashboard_assets/js/core/jquery.min.js"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />

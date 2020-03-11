@@ -77,7 +77,7 @@
     }
 </script>
 <!--   Core JS Files   -->
-<script src="/admin/dashboard_assets/js/core/jquery.min.js"></script>
+
 <script src="/admin/dashboard_assets/js/core/popper.min.js"></script>
 <script src="/admin/dashboard_assets/js/core/bootstrap-material-design.min.js"></script>
 <script src="/admin/dashboard_assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>

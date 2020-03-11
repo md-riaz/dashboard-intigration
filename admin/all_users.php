@@ -151,28 +151,8 @@ $run_query = mysqli_query($db_connect, $select_data);
                                                     <a title="Edit" href="/admin/user.php?id=<?= $user['id'] ?>"><span class="text-warning"><i class="far fa-edit"></i></span></a>
                                                 <?php endif; ?>
                                                 <?php if ($_SESSION["role"] == 1) : ?>
-                                                    <a data-toggle="modal" data-target="#deleteModal<?= $user['id'] ?>" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="deleteModal<?= $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">DELETE CONFIRMATION</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    Are you sure you want to delete your account? If you delete your account, you will permanently lose all your information.
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                    <a href="/admin/auth/delete_user.php?id=<?= $user['id'] ?>" type="button" class="btn btn-danger text-white">Save changes</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Modal End -->
+                                                    <a data-toggle="modal" data-target="#deleteModal" title="Delete" id="dlbtn" onclick="dltfn(<?= $user['id'] ?>)"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
@@ -188,7 +168,33 @@ $run_query = mysqli_query($db_connect, $select_data);
 
         </div>
     </div>
-
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">DELETE CONFIRMATION</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your account? If you delete your account, you will permanently lose all your information.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="#" type="button" class="btn btn-danger text-white dlt">Save changes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
     <?php
     include 'dashboard_includes/footer.php';
     ?>
+    <script>
+        // select model a tag and set href attr
+        function dltfn(id) {
+            $(".dlt").attr("href", "/admin/auth/delete_user.php?id=" + id);
+        }
+    </script>

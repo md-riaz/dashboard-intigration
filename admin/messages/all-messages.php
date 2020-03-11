@@ -1,91 +1,94 @@
 <head>
-    <title>All Users</title>
+    <title>All Messeges</title>
 </head>
 <?php
 //  include header file
-include 'dashboard_includes/header.php';
-include 'dashboard_includes/sidebar.php';
-include 'dashboard_includes/topNav.php';
-include 'dashboard_includes/session_check.php';
+include '../dashboard_includes/header.php';
+include '../dashboard_includes/sidebar.php';
+include '../dashboard_includes/topNav.php';
+include '../dashboard_includes/session_check.php';
 
-//Select all data from users table
-$select_data = "SELECT * FROM `users`";
+//Select all data from messages table
+$select_data = "SELECT * FROM `messages` WHERE `status` != 2";
 //run that query
 $run_query = mysqli_query($db_connect, $select_data);
+
+function status($status)
+{
+    echo $status == 0 ? "bold" : "normal";
+}
 ?>
+
+
     <div class="content">
         <div class="container-fluid">
             <!-- your content here -->
 
 
             <!-- if session found echo that with alert -->
-            <?php if (isset($_SESSION["succm"])) : ?>
+            <?php if (isset($_SESSION["emsg"])) : ?>
 
                 <div class="alert alert-info  alert-dismissible fade show" role="alert">
-                    <?= $_SESSION["succm"] ?>
+                    <?= $_SESSION["emsg"] ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
             <?php endif;
-            unset($_SESSION["succm"]) ?>
+            unset($_SESSION["emsg"]) ?>
             <!-- if session found echo that with alert -->
-            <?php if (isset($_SESSION["success"])) : ?>
+            <?php if (isset($_SESSION["smsg"])) : ?>
 
                 <div class="alert alert-info  alert-dismissible fade show" role="alert">
-                    <?= $_SESSION["success"] ?>
+                    <?= $_SESSION["smsg"] ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
             <?php endif;
-            unset($_SESSION["success"]) ?>
+            unset($_SESSION["smsg"]) ?>
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">Student Stats</h4>
-                            <p class="card-category">New Students on 15th September, 2016</p>
+                            <h4 class="card-title">Messages Section</h4>
                         </div>
                         <div class="card-body table-responsive">
                             <table class="table table-hover">
                                 <thead class="text-primary">
                                     <tr>
-                                        <th>ID</th>
+                                        <th>SL</th>
                                         <th>Name</th>
-                                        <th>Username</th>
                                         <th>Email Address</th>
-                                        <th>Role</th>
+                                        <th>Message</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <!-- Loop through all rows from database -->
-                                    <?php foreach ($run_query as $user) : ?>
-                                        <tr>
+                                    <?php $count = 1;
+                                    foreach ($run_query as $msg) : ?>
+                                        <tr style="font-weight: <?php status($msg['status']) ?>">
                                             <!-- echo a colunm -->
-                                            <td><?= $user['id'] ?></td>
-                                            <td><?= $user['names'] ?></td>
-                                            <td><?= $user['usernames'] ?></td>
-                                            <td><?= $user['emails'] ?></td>
-                                            <td><?= role($user['role']) ?></td>
+                                            <td><?= $count ?></td>
+                                            <td><?= $msg['name'] ?></td>
+                                            <td><?= $msg['email'] ?></td>
+                                            <td><?= substr($msg['message'], 0, 40) . "..." ?></td>
                                             <td>
                                                 <!-- pass the value of id with session -->
-                                                <a title="View" href="/admin/user_profile.php?id=<?= $user['id'] ?>"><span class="text-info"><i class="far fa-address-card"></i></span></a>
+                                                <a title="View" href="/admin/messages/msg.php?id=<?= $msg['id'] ?>"><span class="text-info"><i class="far fa-address-card"></i></span></a>
 
-                                                <?php if ($_SESSION["role"] == 1 || $_SESSION["role"] == 2 || $_SESSION["role"] == 3) : ?>
-                                                    <a title="Edit" href="/admin/user.php?id=<?= $user['id'] ?>"><span class="text-warning"><i class="far fa-edit"></i></span></a>
-                                                <?php endif; ?>
                                                 <?php if ($_SESSION["role"] == 1) : ?>
-                                                    <a data-toggle="modal" data-target="#deleteModal" title="Delete" id="dlbtn" onclick="dltfn(<?= $user['id'] ?>)"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                                    <a data-toggle="modal" data-target="#deleteModal" title="Delete" id="dlbtn" onclick="dltfn(<?= $msg['id'] ?>)"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
 
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
-                                    <?php endforeach ?>
+                                    <?php $count++;
+                                    endforeach ?>
                                 </tbody>
                             </table>
                             <button onclick="window.print();" type="button" class="btn btn-info"><i class="material-icons"> local_printshop </i> Print</button>
@@ -93,8 +96,6 @@ $run_query = mysqli_query($db_connect, $select_data);
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
     <!-- Modal -->
@@ -108,7 +109,7 @@ $run_query = mysqli_query($db_connect, $select_data);
                     </button>
                 </div>
                 <div class="modal-body">
-                    Are you sure you want to delete your account? If you delete your account, you will permanently lose all your information.
+                    Are you sure you want to delete this message?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -118,12 +119,12 @@ $run_query = mysqli_query($db_connect, $select_data);
         </div>
     </div>
     <!-- Modal End -->
-    <?php
-    include 'dashboard_includes/footer.php';
-    ?>
     <script>
         // select model a tag and set href attr
         function dltfn(id) {
-            $(".dlt").attr("href", "/admin/auth/delete_user.php?id=" + id);
+            $(".dlt").attr("href", "/admin/messages/change_status.php?id=" + id);
         }
     </script>
+    <?php
+    include '../dashboard_includes/footer.php';
+    ?>

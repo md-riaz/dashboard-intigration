@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'admin/dashboard_includes/db.php';
 //Select all data from users table
 $select_service = "SELECT * FROM `services` WHERE `status` = 1 LIMIT 6";
@@ -491,11 +492,35 @@ $facts = mysqli_query($db_connect, $select_fact);
                     </div>
                     <div class="col-lg-6">
                         <div class="contact-form">
-                            <form action="#">
-                                <input type="text" placeholder="your name *">
-                                <input type="email" placeholder="your email *">
+                            <!-- if session found echo that with alert -->
+                            <?php if (isset($_SESSION["smsg"])) : ?>
+
+                                <div class="alert alert-success  alert-dismissible fade show" role="alert">
+                                    <?= $_SESSION["smsg"] ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                            <?php endif;
+                            unset($_SESSION["smsg"]) ?>
+                            <!-- if session found echo that with alert -->
+                            <?php if (isset($_SESSION["emsg"])) : ?>
+
+                                <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                    <?= $_SESSION["emsg"] ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                            <?php endif;
+                            unset($_SESSION["emsg"]) ?>
+                            <form action="/admin/messages/contact_post.php" method="POST">
+                                <input type="text" name="name" placeholder="your name *">
+                                <input type="email" name="email" placeholder="your email *">
                                 <textarea name="message" id="message" placeholder="your message *"></textarea>
-                                <button class="btn">BUY TICKET</button>
+                                <button class="btn">send messege</button>
                             </form>
                         </div>
                     </div>

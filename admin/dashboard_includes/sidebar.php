@@ -1,3 +1,4 @@
+
 <style>
     .dropdown-toggle:after {
         position: absolute;
@@ -87,6 +88,20 @@
                         <a class="dropdown-item" href="/admin/fact_area_section/add-fact.php"><i class="material-icons"> playlist_add </i>Add Fact</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/admin/fact_area_section/all-fact.php"><i class="material-icons"> list_alt </i>View ALL</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item ">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">message</i>
+                        <p>Messages</p>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/admin/messages/all-messages.php"><i class="material-icons"> textsms
+                            </i>All Messages</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/admin/messages/msg-trash.php"><i class="material-icons"> delete_sweep </i>Trash Messages</a>
                     </div>
                 </div>
             </li>

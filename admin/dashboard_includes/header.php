@@ -1,7 +1,6 @@
 <?php
 session_start();
-include  'db.php';
-
+include 'db.php';
 //Check role
 function role($role)
 {
@@ -38,3 +37,4 @@ function role($role)
 
 <body>
     <div class="wrapper ">
+    <div class="main-panel">

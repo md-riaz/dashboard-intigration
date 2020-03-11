@@ -26,9 +26,8 @@ $msg_num = mysqli_fetch_assoc($count_query);
     color: gray;
   }
 
-  .dropdown-menu .dropdown-item,
-  .dropdown-menu li>a {
-    width: 500px;
+  .msg>a {
+    width: 500px !important;
   }
 </style>
 <!-- Navbar -->
@@ -71,7 +70,7 @@ $msg_num = mysqli_fetch_assoc($count_query);
               Some Actions
             </p>
           </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <div class="dropdown-menu dropdown-menu-right msg" aria-labelledby="navbarDropdownMenuLink">
 
             <?php foreach ($msg_query as $msgd) : ?>
               <a class="dropdown-item" href="/admin/messages/msg.php?id=<?= $msgd['id'] ?>">

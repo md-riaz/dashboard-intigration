@@ -19,6 +19,8 @@ $select_data = "SELECT COUNT(*) as exist, id, usernames,img_dir,emails,names,rol
 $run_query = mysqli_query($db_connect, $select_data);
 $get_data = mysqli_fetch_assoc($run_query);
 
+
+
 if ($get_data['exist'] == 1) {
     $select_data = "SELECT * FROM `users` WHERE emails = '$email'";
     $run_query = mysqli_query($db_connect, $select_data);

@@ -1,9 +1,9 @@
 <?php
 // <!-- include header file -->
+include '../dashboard_includes/session_check.php';
 include '../dashboard_includes/header.php';
 include '../dashboard_includes/sidebar.php';
 include '../dashboard_includes/topNav.php';
-include '../dashboard_includes/session_check.php';
 // get id value from url
 $id = $_GET["id"];
 //Select data from messages table whose id matches url id
@@ -23,53 +23,50 @@ if ($msg['status'] == 0) {
 </head>
 
 
-    <div class="content">
-        <div class="container-fluid">
-            <!-- your content here -->
+<div class="content">
+    <div class="container-fluid">
+        <!-- your content here -->
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title"><?= $msg["name"] ?>'s message</h4>
-                        </div>
-                        <div class="card-body table-responsive">
-                            <table class="table table-hover">
-                                <tr>
-                                    <td> Name : </td>
-                                    <td><?= $msg["name"] ?></td></tr>
-                                <tr>
-                                    <td> Email : </td>
-                                    <td><?= $msg["email"] ?></td>
-                                </tr>
-                                <tr>
-                                    <td width="80"> Message : </td>
-                                    <td><?= $msg["message"] ?></td>
-                                </tr>
-                            </table>
-                            <a href="/admin/messages/all-messages.php" class="btn btn-info" style="color:white"><i class="material-icons"> keyboard_return </i> Go Back</a>
-                        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title"><?= $msg["name"] ?>'s message</h4>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <tr>
+                                <td> Name : </td>
+                                <td><?= $msg["name"] ?></td>
+                            </tr>
+                            <tr>
+                                <td> Email : </td>
+                                <td><?= $msg["email"] ?></td>
+                            </tr>
+                            <tr>
+                                <td width="80"> Message : </td>
+                                <td><?= $msg["message"] ?></td>
+                            </tr>
+                        </table>
+                        <a href="/admin/messages/all-messages.php" class="btn btn-info" style="color:white"><i class="material-icons"> keyboard_return </i> Go Back</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
-    <div>
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
-
-
-
-
+<div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
 
 
 
@@ -82,6 +79,10 @@ if ($msg['status'] == 0) {
 
 
 
-    <?php
-    include '../dashboard_includes/footer.php';
-    ?>
+
+
+
+
+<?php
+include '../dashboard_includes/footer.php';
+?>

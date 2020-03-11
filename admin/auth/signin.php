@@ -2,12 +2,17 @@
     <title>Sign In</title>
 </head>
 <?php
+session_start();
 //  include header file
 include '../dashboard_includes/header.php';
 ?>
 <style>
     body {
         height: 100%;
+    }
+
+    .main-panel {
+        width: 100%;
     }
 
     .container {

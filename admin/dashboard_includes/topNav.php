@@ -2,12 +2,35 @@
 
 include 'db.php';
 //Select all data from messages table
-$select_data = "SELECT COUNT(*) as totalmsg FROM `messages` WHERE `status` = 0";
+$count_msg = "SELECT COUNT(*) as totalmsg FROM `messages` WHERE `status` = 0";
+$msg_select = "SELECT * FROM `messages` WHERE `status` = 0";
 //run that query
-$run_query = mysqli_query($db_connect, $select_data);
-$msg = mysqli_fetch_assoc($run_query);
+$count_query = mysqli_query($db_connect, $count_msg);
+$msg_query = mysqli_query($db_connect, $msg_select);
+$msg_num = mysqli_fetch_assoc($count_query);
 ?>
+<style>
+  .msg {
+    display: flex;
+  }
 
+  .msgDeatils {
+    margin: 0 0 0 15px;
+  }
+
+  .mtitle {
+    margin: 0;
+  }
+
+  .msubtitle {
+    color: gray;
+  }
+
+  .dropdown-menu .dropdown-item,
+  .dropdown-menu li>a {
+    width: 500px;
+  }
+</style>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
   <div class="container-fluid">
@@ -43,28 +66,26 @@ $msg = mysqli_fetch_assoc($run_query);
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons">notifications</i>
-            <span class="notification"><?= $msg['totalmsg'] ?></span>
+            <span class="notification"><?= $msg_num['totalmsg'] ?></span>
             <p class="d-lg-none d-md-block">
               Some Actions
             </p>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">
-              <div class="msg">
-                <div class="msgImg">
-                  <img src="https://picsum.photos/100" alt="" width="100">
-                </div>
-                <div class="msgDeatils">
-                  <p class="mtitle">Mike John responded to your email</p>
-                  <p class="msubtitle">Mike John responded to your email</p>
-                </div>
-              </div>
 
-            </a>
-            <a class="dropdown-item" href="#">You have 5 new tasks</a>
-            <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-            <a class="dropdown-item" href="#">Another Notification</a>
-            <a class="dropdown-item" href="#">Another One</a>
+            <?php foreach ($msg_query as $msgd) : ?>
+              <a class="dropdown-item" href="/admin/messages/msg.php?id=<?= $msgd['id'] ?>">
+                <div class="msg">
+                  <div class="msgImg">
+                    <img src="https://i.pravatar.cc/100" alt="" width="50">
+                  </div>
+                  <div class="msgDeatils">
+                    <p class="mtitle"><?= $msgd['name'] ?></p>
+                    <p class="msubtitle"><?= substr($msgd['message'], 0, 60) . "..." ?></p>
+                  </div>
+                </div>
+              </a>
+            <?php endforeach ?>
           </div>
         </li>
         <li class="nav-item dropdown">

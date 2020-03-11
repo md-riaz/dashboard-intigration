@@ -105,6 +105,7 @@ $user = mysqli_fetch_assoc($run_query);
                                             <label class="bmd-label-floating">Username</label>
                                             <input type="text" class="form-control" name="username" value="<?= $user['usernames']; ?>">
                                         </div>
+
                                         <!-- if session found echo that with alert -->
                                         <?php if (isset($_SESSION["uerr"])) : ?>
 
@@ -184,6 +185,7 @@ $user = mysqli_fetch_assoc($run_query);
                                             <input type="file" name="ProfileImage" onchange="displayImg(this)" id="ProfileImage" style="display: none">
                                             <span onclick="imgup()" class="imgicon"><i class="fas fa-plus"></i></span>
                                         </div>
+                                        <p>File size is <span class="size">0KB</span></p>
                                         <!-- if session found echo that with alert -->
                                         <?php if (isset($_SESSION["typeerr"])) : ?>
 
@@ -220,6 +222,31 @@ $user = mysqli_fetch_assoc($run_query);
 
                                         <?php endif;
                                         unset($_SESSION["serr"]) ?>
+                                        <!-- if session found echo that with alert -->
+                                        <?php if (isset($_SESSION["typeerr"])) : ?>
+
+                                            <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                                <?= $_SESSION["typeerr"] ?>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                        <?php endif;
+                                        unset($_SESSION["typeerr"]) ?>
+                                        <!-- if session found echo that with alert -->
+                                        <?php if (isset($_SESSION["err"])) : ?>
+
+                                            <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                                <?= $_SESSION["err"] ?>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                        <?php endif;
+                                        unset($_SESSION["err"]) ?>
+
                                     </div>
 
                                 </div>

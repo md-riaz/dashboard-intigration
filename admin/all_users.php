@@ -88,30 +88,7 @@ $run_query = mysqli_query($db_connect, $select_data);
         <div class="container-fluid">
             <!-- your content here -->
 
-            <!-- if session found echo that with alert -->
-            <?php if (isset($_SESSION["typeerr"])) : ?>
 
-                <div class="alert alert-info  alert-dismissible fade show" role="alert">
-                    <?= $_SESSION["typeerr"] ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-            <?php endif;
-            unset($_SESSION["typeerr"]) ?>
-            <!-- if session found echo that with alert -->
-            <?php if (isset($_SESSION["err"])) : ?>
-
-                <div class="alert alert-info  alert-dismissible fade show" role="alert">
-                    <?= $_SESSION["err"] ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-            <?php endif;
-            unset($_SESSION["err"]) ?>
             <!-- if session found echo that with alert -->
             <?php if (isset($_SESSION["succm"])) : ?>
 
@@ -124,30 +101,6 @@ $run_query = mysqli_query($db_connect, $select_data);
 
             <?php endif;
             unset($_SESSION["succm"]) ?>
-            <!-- if session found echo that with alert -->
-            <?php if (isset($_SESSION["serr"])) : ?>
-
-                <div class="alert alert-info  alert-dismissible fade show" role="alert">
-                    <?= $_SESSION["typeerr"] ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-            <?php endif;
-            unset($_SESSION["serr"]) ?>
-            <!-- if session found echo that with alert -->
-            <?php if (isset($_SESSION["serr"])) : ?>
-
-                <div class="alert alert-info  alert-dismissible fade show" role="alert">
-                    <?= $_SESSION["typeerr"] ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-            <?php endif;
-            unset($_SESSION["serr"]) ?>
             <!-- if session found echo that with alert -->
             <?php if (isset($_SESSION["success"])) : ?>
 
@@ -198,7 +151,28 @@ $run_query = mysqli_query($db_connect, $select_data);
                                                     <a title="Edit" href="/admin/user.php?id=<?= $user['id'] ?>"><span class="text-warning"><i class="far fa-edit"></i></span></a>
                                                 <?php endif; ?>
                                                 <?php if ($_SESSION["role"] == 1) : ?>
-                                                    <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                                    <a data-toggle="modal" data-target="#deleteModal<?= $user['id'] ?>" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="deleteModal<?= $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">DELETE CONFIRMATION</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure you want to delete your account? If you delete your account, you will permanently lose all your information.
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <a href="/admin/auth/delete_user.php?id=<?= $user['id'] ?>" type="button" class="btn btn-danger text-white">Save changes</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Modal End -->
                                                 <?php endif; ?>
                                             </td>
                                         </tr>
@@ -211,28 +185,10 @@ $run_query = mysqli_query($db_connect, $select_data);
                 </div>
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">DELETE CONFIRMATION</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure you want to delete your account? If you delete your account, you will permanently lose all your information.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a href="/admin/auth/delete_user.php?id=<?= $user['id'] ?>" type="button" class="btn btn-danger text-white">Save changes</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
+
     <?php
     include 'dashboard_includes/footer.php';
     ?>

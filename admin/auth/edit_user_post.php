@@ -32,12 +32,14 @@ if (isset($_FILES["ProfileImage"])) {
 
     if ($uploadOk == 0) {
         $_SESSION["err"] = "Sorry, your image was not uploaded.";
+        header("location:/admin/user.php?id=$id");
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($source_path, $target_file)) {
             $_SESSION["succm"] = "The image " . basename($_FILES["ProfileImage"]["name"]) . " has been uploaded.";
         } else {
             $_SESSION["serr"] = "Sorry, your image was not uploaded.";
+            header("location:/admin/user.php?id=$id");
         }
     }
 }
@@ -100,9 +102,8 @@ if (empty($university)) {
 }
 
 // if any error found then go to previews page else check data for duplicates and if no duplicate then insert to database   
-if ($err != 0) {
+if ($err != 0 || $uploadOk != 1) {
     header("location:/admin/user.php?id=$id");
-    echo "text";
 } else {
     //Check email for double in database
     $check_double = "SELECT COUNT(*) as duplicate FROM `users` WHERE emails = '$email'";

@@ -116,7 +116,7 @@ $run_query = mysqli_query($db_connect, $select_data);
 <script>
     // select model a tag and set href attr
     function dltfn(id) {
-        $(".dlt").attr("href", "/admin/messages/change_status.php?id=" + id);
+        $(".dlt").attr("href", "/admin/messages/delete-msg.php?id=" + id);
     }
 </script>
 <?php

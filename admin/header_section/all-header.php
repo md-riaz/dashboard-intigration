@@ -7,11 +7,16 @@ include '../dashboard_includes/session_check.php';
 include '../dashboard_includes/header.php';
 include '../dashboard_includes/sidebar.php';
 include '../dashboard_includes/topNav.php';
-//Select all data from users table
+
+
 $select_data = "SELECT * FROM `header`";
-$select_social = "SELECT * FROM `social`";
-//run that query
 $run_query = mysqli_query($db_connect, $select_data);
+
+$select_banner = "SELECT * FROM `banner_img` WHERE `id` = 1";
+$sql = mysqli_query($db_connect, $select_banner);
+$banner_img = mysqli_fetch_assoc($sql);
+
+$select_social = "SELECT * FROM `social`";
 $fire_query = mysqli_query($db_connect, $select_social);
 $social_link = mysqli_fetch_assoc($fire_query);
 //Check service status
@@ -84,13 +89,14 @@ function status($status)
                                         </td>
                                         <td class="text-center">
                                             <!-- pass the value of id with session -->
-                                            <a data-toggle="modal" data-target="#exampleModal" title="Delete" id="dlbtn"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                            <a data-toggle="modal" data-target="#deleteModal" title="Delete" id="dlbtn" onclick="dltfn(<?= $header['id'] ?>)"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
                         </table>
                         <button data-toggle="modal" data-target="#social_triger" class="btn btn-primary"><span>Socail Info</span></button>
+                        <button data-toggle="modal" data-target="#banner_triger" class="btn bg-primary"><span>Banner Image</span></button>
                         <div class="alert alert-info" role="alert">
                             Only the first active items will show on the site
                         </div>
@@ -99,9 +105,10 @@ function status($status)
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="social_triger" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form action="" method="post">
+
+        <form action="/admin/header_section/social_info_post.php" method="post">
+            <div class="modal fade" id="social_triger" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">EDIT SOCIAL LINKS</h5>
@@ -129,16 +136,67 @@ function status($status)
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <a href="/admin/header_section/social_info_post.php" type="button" class="btn btn-success text-white">Save changes</a>
+                            <button type="submit" class="btn btn-success text-white">Save changes</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        <!-- Modal -->
+        <div class="modal fade" id="banner_triger" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form action="/admin/header_section/update-banner.php" method="post" enctype="multipart/form-data">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">UPDATE BANNER IMAGE</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="avatar">
+                                <img src="" alt="Banner img" id="ProfileDisplay">
+                                <input type="file" name="BannerImg" onchange="displayImg(this)" id="ProfileImage" style="display: none">
+                                <span onclick="imgup()" class="imgicon"><i class="fas fa-plus"></i></span>
+                            </div>
+                            <div class="currnt_img d-flex">
+                                Current banner image
+                                <img src="/img/banner/<?= $banner_img['img_dir'] ?>" alt="Current Image" style="max-width: 100%;height: 200px">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success text-white">Save changes</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
 
-
-        Social
-
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">DELETE CONFIRMATION</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this message?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a href="#" type="button" class="btn btn-danger text-white dlt">Save changes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal End -->
     </div>
 </div>
 
@@ -148,7 +206,12 @@ function status($status)
 
 
 
-
+<script>
+    // select model a tag and set href attr
+    function dltfn(id) {
+        $(".dlt").attr("href", "/admin/header_section/delete-header.php?id=" + id);
+    }
+</script>
 
 <?php
 include '../dashboard_includes/footer.php';

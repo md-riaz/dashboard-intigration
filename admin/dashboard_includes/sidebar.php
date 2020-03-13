@@ -104,6 +104,12 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/about_section/about.php">
+                    <i class="material-icons">short_text</i>
+                    <p>About Section</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

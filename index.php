@@ -2,17 +2,33 @@
 session_start();
 include 'admin/dashboard_includes/db.php';
 //Select all data from users table
+
+/* Services */
 $select_service = "SELECT * FROM `services` WHERE `status` = 1 LIMIT 6";
-$select_social = "SELECT * FROM `social` WHERE `id` = 1";
-$select_header = "SELECT * FROM `header` WHERE `status` = 1 LIMIT 1";
-$select_fact = "SELECT * FROM `fact_areas` WHERE `status` = 1 LIMIT 4";
-//run that query
 $services = mysqli_query($db_connect, $select_service);
+
+/* social */
+$select_social = "SELECT * FROM `social` WHERE `id` = 1";
 $social = mysqli_query($db_connect, $select_social);
 $social = mysqli_fetch_assoc($social);
+
+/* Fact */
+$select_fact = "SELECT * FROM `fact_areas` WHERE `status` = 1 LIMIT 4";
+$facts = mysqli_query($db_connect, $select_fact);
+
+/* About */
+$select_about_info = "SELECT * FROM `about` WHERE `id` = 1";
+$about_info_sql = mysqli_query($db_connect, $select_about_info);
+$about_info = mysqli_fetch_assoc($about_info_sql);
+
+/* About Bar*/
+$select_p_bar = "SELECT * FROM `skillbar` WHERE `status` = 1";
+$p_bar_sql = mysqli_query($db_connect, $select_p_bar);
+
+/* Header/Banner */
+$select_header = "SELECT * FROM `header` WHERE `status` = 1 LIMIT 1";
 $header_infos = mysqli_query($db_connect, $select_header);
 $header_info = mysqli_fetch_assoc($header_infos);
-$facts = mysqli_query($db_connect, $select_fact);
 ?>
 
 <!doctype html>
@@ -98,8 +114,8 @@ $facts = mysqli_query($db_connect, $select_fact);
                 </button>
             </div>
             <div class="logo-side mb-30">
-                <a href="index-2.html">
-                    <img src="img/logo/logo.png" alt="" />
+                <a href="#">
+                    <img src="img/logo/mylogo.png" alt="" />
                 </a>
             </div>
             <div class="side-info mb-30">
@@ -169,7 +185,7 @@ $facts = mysqli_query($db_connect, $select_fact);
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="about-img">
-                            <img src="img/banner/banner_img2.png" title="me-01" alt="me-01">
+                            <img src="img/banner/<?= $about_info['img_dir'] ?>" title="me-01" alt="me-01">
                         </div>
                     </div>
                     <div class="col-lg-6 pr-90">
@@ -178,67 +194,25 @@ $facts = mysqli_query($db_connect, $select_fact);
                             <h2>About Me</h2>
                         </div>
                         <div class="about-content">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, sed repudiandae odit deserunt, quas
-                                quibusdam necessitatibus nesciunt eligendi esse sit non reprehenderit quisquam asperiores maxime
-                                blanditiis culpa vitae velit. Numquam!</p>
-                            <h3>Education:</h3>
+                            <p><?= $about_info['details'] ?></p>
+                            <h3><?= $about_info['progress_topic'] ?>:</h3>
                         </div>
-                        <!-- Education Item -->
-                        <div class="education">
-                            <div class="year">2020</div>
-                            <div class="line"></div>
-                            <div class="location">
-                                <span>PHD of Interaction Design &amp; Animation</span>
-                                <div class="progressWrapper">
-                                    <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                        <?php foreach ($p_bar_sql as $skillbar) : ?>
+                            <!-- Education Item -->
+                            <div class="education">
+                                <div class="year"><?= $skillbar['year'] ?></div>
+                                <div class="line"></div>
+                                <div class="location">
+                                    <span><?= $skillbar['skill_name'] ?></span>
+                                    <div class="progressWrapper">
+                                        <div class="progress">
+                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: <?= $skillbar['value'] . "%" ?>;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End Education Item -->
-                        <!-- Education Item -->
-                        <div class="education">
-                            <div class="year">2016</div>
-                            <div class="line"></div>
-                            <div class="location">
-                                <span>Master of Database Administration</span>
-                                <div class="progressWrapper">
-                                    <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Education Item -->
-                        <!-- Education Item -->
-                        <div class="education">
-                            <div class="year">2010</div>
-                            <div class="line"></div>
-                            <div class="location">
-                                <span>Bachelor of Computer Engineering</span>
-                                <div class="progressWrapper">
-                                    <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Education Item -->
-                        <!-- Education Item -->
-                        <div class="education">
-                            <div class="year">2005</div>
-                            <div class="line"></div>
-                            <div class="location">
-                                <span>Diploma of Computer</span>
-                                <div class="progressWrapper">
-                                    <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Education Item -->
+                            <!-- End Education Item -->
+                        <?php endforeach ?>
                     </div>
                 </div>
             </div>

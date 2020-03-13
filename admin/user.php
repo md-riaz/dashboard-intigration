@@ -191,10 +191,6 @@ $user = mysqli_fetch_assoc($run_query);
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
                             <div class="clearfix"></div>
                         </form>

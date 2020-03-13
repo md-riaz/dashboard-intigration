@@ -44,7 +44,7 @@ include '../dashboard_includes/topNav.php';
                         <?php endif;
                         unset($_SESSION["err"]) ?>
 
-                        <form action="add-header-post.php" method="POST">
+                        <form action="/admin/header_section/add-header-post.php" method="POST">
                             <div class="form-group bmd-form-group">
                                 <label class="bmd-label-floating">Header Title</label>
                                 <input type="text" class="form-control" name="title">

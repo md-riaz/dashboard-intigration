@@ -46,7 +46,7 @@ $data = mysqli_fetch_assoc($sql);
                         <?php endif;
                         unset($_SESSION["err"]) ?>
                         <div class="d-flex justify-content-around">
-                            <form action="/admin/logo/brand-post.php?p=brand" method="POST" enctype="multipart/form-data">
+                            <form action="/admin/logo/logo-post.php?p=brand" method="POST" enctype="multipart/form-data">
                                 <div class="form-group bmd-form-group">
                                     <div class="avatar">
                                         <img src="" alt="Brand img" id="ProfileDisplay" class="main_brand3">
@@ -61,7 +61,7 @@ $data = mysqli_fetch_assoc($sql);
 
                                 <button type="submit" class="btn btn-primary">Update Brand Logo</button>
                             </form>
-                            <form action="/admin/logo/brand-post.php?p=secondary" method="POST" enctype="multipart/form-data">
+                            <form action="/admin/logo/logo-post.php?p=secondary" method="POST" enctype="multipart/form-data">
                                 <div class="form-group bmd-form-group">
                                     <div class="avatar">
                                         <img src="" alt="Brand img" id="ProfileDisplay" class="main_brand">

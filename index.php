@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'admin/dashboard_includes/db.php';
-//Select all data from users table
+//Select all data from table
 
 /* Services */
 $select_service = "SELECT * FROM `services` WHERE `status` = 1 LIMIT 6";
@@ -34,22 +34,26 @@ $select_header = "SELECT * FROM `header` WHERE `status` = 1 LIMIT 1";
 $header_infos = mysqli_query($db_connect, $select_header);
 $header_info = mysqli_fetch_assoc($header_infos);
 
-/* Brand Image */
-$select_brand = "SELECT * FROM `logo` WHERE `id` = 1";
-$brand_sql = mysqli_query($db_connect, $select_brand);
-$brand = mysqli_fetch_assoc($brand_sql);
+/* LOGO Image */
+$select_logo = "SELECT * FROM `logo` WHERE `id` = 1";
+$logo_sql = mysqli_query($db_connect, $select_logo);
+$logo = mysqli_fetch_assoc($logo_sql);
 
 
 /* Contact Info */
 $select_address = "SELECT * FROM `address` WHERE `id` = 1";
 $address_sql = mysqli_query($db_connect, $select_address);
 $address = mysqli_fetch_assoc($address_sql);
+
+/* Brand Image */
+$select_brands = "SELECT * FROM `brands` WHERE `status` = 1";
+$brands_sql = mysqli_query($db_connect, $select_brands);
+
+
 ?>
 
 <!doctype html>
 <html class="no-js" lang="en">
-
-<!-- Mirrored from themebeyond.com/html/kufa/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Feb 2020 06:27:43 GMT -->
 
 <head>
     <meta charset="utf-8">
@@ -96,8 +100,8 @@ $address = mysqli_fetch_assoc($address_sql);
                     <div class="col-xl-12">
                         <div class="main-menu">
                             <nav class="navbar navbar-expand-lg">
-                                <a href="index.php" class="navbar-brand logo-sticky-none"><img src="img/logo/<?= $brand['main_img'] ?>" alt="Logo"></a>
-                                <a href="index.php" class="navbar-brand s-logo-none"><img src="img/logo/<?= $brand['secondary_img'] ?>" alt="Logo"></a>
+                                <a href="index.php" class="navbar-brand logo-sticky-none"><img src="img/logo/<?= $logo['main_img'] ?>" alt="Logo"></a>
+                                <a href="index.php" class="navbar-brand s-logo-none"><img src="img/logo/<?= $logo['secondary_img'] ?>" alt="Logo"></a>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                                     <span class="navbar-icon"></span>
                                     <span class="navbar-icon"></span>
@@ -130,22 +134,21 @@ $address = mysqli_fetch_assoc($address_sql);
             </div>
             <div class="logo-side mb-30">
                 <a href="#">
-                    <img src="img/logo/<?= $brand['main_img'] ?>" alt="" />
+                    <img src="img/logo/<?= $logo['main_img'] ?>" alt="" />
                 </a>
             </div>
             <div class="side-info mb-30">
                 <div class="contact-list mb-30">
                     <h4>Office Address</h4>
-                    <p>123/A, Miranda City Likaoli
-                        Prikano, Dope</p>
+                    <p><?= $address['address'] ?></p>
                 </div>
                 <div class="contact-list mb-30">
                     <h4>Phone Number</h4>
-                    <p>+0989 7876 9865 9</p>
+                    <p><?= $address['phone'] ?></p>
                 </div>
                 <div class="contact-list mb-30">
                     <h4>Email Address</h4>
-                    <p>info@example.com</p>
+                    <p><?= $address['email'] ?></p>
                 </div>
             </div>
             <div class="social-icon-right mt-20">
@@ -280,8 +283,8 @@ $address = mysqli_fetch_assoc($address_sql);
                                 </div>
                                 <div class="speaker-overlay">
                                     <span><?= $portfolio['category'] ?></span>
-                                    <h4><a href="portfolio-single.php"><?= $portfolio['project_name'] ?></a></h4>
-                                    <a href="portfolio-single.php" class="arrow-btn">More information <span></span></a>
+                                    <h4><a href="portfolio-single.php?id=<?= $portfolio['id'] ?>"><?= $portfolio['project_name'] ?></a></h4>
+                                    <a href="portfolio-single.php?id=<?= $portfolio['id'] ?>" class="arrow-btn">More information <span></span></a>
                                 </div>
                             </div>
                         </div>
@@ -305,7 +308,7 @@ $address = mysqli_fetch_assoc($address_sql);
                                         <i class="<?= $fact['icon'] ?>"></i>
                                     </div>
                                     <div class="fact-content">
-                                        <h2><span class="count"><?= $fact['project_numbers'] ?></span>k</h2>
+                                        <h2><span class="count"><?= $fact['project_numbers'] ?></span></h2>
                                         <span><?= $fact['project_topic'] ?></span>
                                     </div>
                                 </div>
@@ -366,36 +369,14 @@ $address = mysqli_fetch_assoc($address_sql);
         <div class="barnd-area pt-100 pb-100">
             <div class="container">
                 <div class="row brand-active">
-                    <div class="col-xl-2">
-                        <div class="single-brand">
-                            <img src="img/brand/brand_img01.png" alt="img">
+                    <?php foreach ($brands_sql as $brand) : ?>
+                        <div class="col-xl-2">
+                            <div class="single-brand">
+                                <img src="img/brand/<?= $brand['img_dir'] ?>" alt="img">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xl-2">
-                        <div class="single-brand">
-                            <img src="img/brand/brand_img02.png" alt="img">
-                        </div>
-                    </div>
-                    <div class="col-xl-2">
-                        <div class="single-brand">
-                            <img src="img/brand/brand_img03.png" alt="img">
-                        </div>
-                    </div>
-                    <div class="col-xl-2">
-                        <div class="single-brand">
-                            <img src="img/brand/brand_img04.png" alt="img">
-                        </div>
-                    </div>
-                    <div class="col-xl-2">
-                        <div class="single-brand">
-                            <img src="img/brand/brand_img05.png" alt="img">
-                        </div>
-                    </div>
-                    <div class="col-xl-2">
-                        <div class="single-brand">
-                            <img src="img/brand/brand_img03.png" alt="img">
-                        </div>
-                    </div>
+                    <?php endforeach ?>
+
                 </div>
             </div>
         </div>

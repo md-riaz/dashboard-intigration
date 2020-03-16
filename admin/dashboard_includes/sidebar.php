@@ -111,9 +111,9 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="/admin/logo/brand.php">
+                <a class="nav-link" href="/admin/logo/logo.php">
                     <i class="material-icons">collections</i>
-                    <p>Brand & Logo</p>
+                    <p>Site Logo</p>
                 </a>
             </li>
             <li class="nav-item ">
@@ -126,6 +126,12 @@
                 <a class="nav-link" href="/admin/portfolio/portfolio.php">
                     <i class="material-icons">thumbs_up_down</i>
                     <p>Best Works</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/brands/brands.php">
+                    <i class="material-icons">card_giftcard</i>
+                    <p>Brand Logo's</p>
                 </a>
             </li>
         </ul>

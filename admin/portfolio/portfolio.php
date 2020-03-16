@@ -192,6 +192,8 @@ function status($status)
                     </div>
                     <label class="bmd-label-floating">Project Image</label>
                     <input type="file" name="img" required>
+                    <label class="bmd-label-floating">Project Details Image</label>
+                    <input type="file" name="img2" required>
                     <div class="form-group bmd-form-group">
                         <label class="bmd-label-floating">Description</label>
                         <textarea class="form-control" name="desp" cols="30" rows="10" required></textarea>

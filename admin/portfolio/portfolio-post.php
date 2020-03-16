@@ -59,7 +59,35 @@ if ($page == "portfolio") {
             $uploadOk = 0;
             $_SESSION["err04"] = "Image not selected !!!";
         }
+        if (!$_FILES['img2']['size'] == 0) {
 
+            //get extention name
+            $imageFileType = strtolower(pathinfo($_FILES['img2']['name'], PATHINFO_EXTENSION));
+            $allowed_extension = ['jpg', 'jpeg', 'png'];
+            if (in_array($imageFileType, $allowed_extension)) {
+                if ($_FILES['img2']['size'] <= 2500000) {
+                    $file_name = "portfolio_details" . $last_id . "." . $imageFileType;
+                    $target_file = "../../img/project/" . $file_name;
+                    //set source path to a variable.
+                    $source_path = $_FILES['img2']['tmp_name'];
+                    if (!$uploadOk == 0) {
+                        if (move_uploaded_file($source_path, $target_file)) {
+                            $update = "UPDATE `portfolio` SET `img_dir2`='$file_name' WHERE `id` = $last_id";
+                            $sql = mysqli_query($db_connect, $update);
+                            if ($sql === TRUE) {
+                                $_SESSION["smsg"] = "New work added.";
+                            }
+                        }
+                    }
+                } else {
+                    $uploadOk = 0;
+                    $_SESSION["err03"] = "File size is limited to 2MB";
+                }
+            } else {
+                $uploadOk = 0;
+                $_SESSION["err02"] = "Only JPG, JPEG & PNG files are allowed";
+            }
+        }
         // Project Image end
 
     } else {

@@ -78,4 +78,4 @@ if ($page == "secondary") {
         $_SESSION["err"] = "Empty Fields!";
     }
 }
-header("location:/admin/logo/brand.php");
+header("location:/admin/logo/logo.php");

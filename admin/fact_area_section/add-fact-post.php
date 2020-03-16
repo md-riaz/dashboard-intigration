@@ -31,14 +31,12 @@ if (!empty($icon) && !empty($project_num) && !empty($topic)) {
     $run_query = mysqli_query($db_connect, $insert_data);
     if ($run_query === TRUE) {
         $_SESSION["success"] = "Fact Info Added SuccessFully";
-        header("location: /admin/fact_area_section/add-fact.php");
     } else {
         $_SESSION["err"] = "Error occurred!!";
-        header("location: /admin/fact_area_section/add-fact.php");
     }
 } else {
     $_SESSION["err"] = "Empty!!";
-    header("location: /admin/fact_area_section/add-fact.php");
 }
 
+header("location: /admin/fact_area_section/add-fact.php");
 ?>

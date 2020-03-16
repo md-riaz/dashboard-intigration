@@ -110,6 +110,24 @@
                     <p>About Section</p>
                 </a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/logo/brand.php">
+                    <i class="material-icons">collections</i>
+                    <p>Brand & Logo</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/address/address.php">
+                    <i class="material-icons">edit_location</i>
+                    <p>Address</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/admin/portfolio/portfolio.php">
+                    <i class="material-icons">thumbs_up_down</i>
+                    <p>Best Works</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

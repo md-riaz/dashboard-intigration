@@ -32,7 +32,7 @@ if ($page == "update") {
             $uploadOk = 0;
         }
         // Allow below 1mb dile size
-        if ($_FILES['aboutImg']['size'] > 1000000) {
+        if ($_FILES['aboutImg']['size'] > 1200000) {
             $_SESSION["err"] = "Sorry, file size should be lower than 1MB";
             $uploadOk = 0;
         }
@@ -58,7 +58,7 @@ if ($page == "update") {
     }
 } else if ($page == "status") {
     $id = $_GET["id"];
-    $select_data = "SELECT * FROM `skillbar` WHERE id = $id";
+    $select_data = "SELECT * FROM `skillbar` WHERE `id` = $id";
     //run that query
     $run_query = mysqli_query($db_connect, $select_data);
     // Get data values as associative array

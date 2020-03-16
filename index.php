@@ -25,10 +25,25 @@ $about_info = mysqli_fetch_assoc($about_info_sql);
 $select_p_bar = "SELECT * FROM `skillbar` WHERE `status` = 1";
 $p_bar_sql = mysqli_query($db_connect, $select_p_bar);
 
+/* Portfolio */
+$select_portfolio = "SELECT * FROM `portfolio` WHERE `status` = 1";
+$portfolio_sql = mysqli_query($db_connect, $select_portfolio);
+
 /* Header/Banner */
 $select_header = "SELECT * FROM `header` WHERE `status` = 1 LIMIT 1";
 $header_infos = mysqli_query($db_connect, $select_header);
 $header_info = mysqli_fetch_assoc($header_infos);
+
+/* Brand Image */
+$select_brand = "SELECT * FROM `logo` WHERE `id` = 1";
+$brand_sql = mysqli_query($db_connect, $select_brand);
+$brand = mysqli_fetch_assoc($brand_sql);
+
+
+/* Contact Info */
+$select_address = "SELECT * FROM `address` WHERE `id` = 1";
+$address_sql = mysqli_query($db_connect, $select_address);
+$address = mysqli_fetch_assoc($address_sql);
 ?>
 
 <!doctype html>
@@ -81,8 +96,8 @@ $header_info = mysqli_fetch_assoc($header_infos);
                     <div class="col-xl-12">
                         <div class="main-menu">
                             <nav class="navbar navbar-expand-lg">
-                                <a href="index.php" class="navbar-brand logo-sticky-none"><img src="img/logo/mylogo.png" alt="Logo"></a>
-                                <a href="index.php" class="navbar-brand s-logo-none"><img src="img/logo/s_mylogo.png" alt="Logo"></a>
+                                <a href="index.php" class="navbar-brand logo-sticky-none"><img src="img/logo/<?= $brand['main_img'] ?>" alt="Logo"></a>
+                                <a href="index.php" class="navbar-brand s-logo-none"><img src="img/logo/<?= $brand['secondary_img'] ?>" alt="Logo"></a>
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                                     <span class="navbar-icon"></span>
                                     <span class="navbar-icon"></span>
@@ -115,7 +130,7 @@ $header_info = mysqli_fetch_assoc($header_infos);
             </div>
             <div class="logo-side mb-30">
                 <a href="#">
-                    <img src="img/logo/mylogo.png" alt="" />
+                    <img src="img/logo/<?= $brand['main_img'] ?>" alt="" />
                 </a>
             </div>
             <div class="side-info mb-30">
@@ -257,78 +272,21 @@ $header_info = mysqli_fetch_assoc($header_infos);
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 pitem">
-                        <div class="speaker-box">
-                            <div class="speaker-thumb">
-                                <img src="img/images/1.jpg" alt="img">
-                            </div>
-                            <div class="speaker-overlay">
-                                <span>Design</span>
-                                <h4><a href="portfolio-single.html">Hamble Triangle</a></h4>
-                                <a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 pitem">
-                        <div class="speaker-box">
-                            <div class="speaker-thumb">
-                                <img src="img/images/2.jpg" alt="img">
-                            </div>
-                            <div class="speaker-overlay">
-                                <span>Video</span>
-                                <h4><a href="portfolio-single.html">Dark Beauty</a></h4>
-                                <a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
+                    <?php foreach ($portfolio_sql as $portfolio) : ?>
+                        <div class="col-lg-4 col-md-6 pitem">
+                            <div class="speaker-box">
+                                <div class="speaker-thumb">
+                                    <img src="img/project/<?= $portfolio['img_dir'] ?>" alt="img">
+                                </div>
+                                <div class="speaker-overlay">
+                                    <span><?= $portfolio['category'] ?></span>
+                                    <h4><a href="portfolio-single.php"><?= $portfolio['project_name'] ?></a></h4>
+                                    <a href="portfolio-single.php" class="arrow-btn">More information <span></span></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 pitem">
-                        <div class="speaker-box">
-                            <div class="speaker-thumb">
-                                <img src="img/images/3.jpg" alt="img">
-                            </div>
-                            <div class="speaker-overlay">
-                                <span>Audio</span>
-                                <h4><a href="portfolio-single.html">Gilroy Limbo.</a></h4>
-                                <a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 pitem">
-                        <div class="speaker-box">
-                            <div class="speaker-thumb">
-                                <img src="img/images/4.jpg" alt="img">
-                            </div>
-                            <div class="speaker-overlay">
-                                <span>Design</span>
-                                <h4><a href="portfolio-single.html">Ipsum which</a></h4>
-                                <a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 pitem">
-                        <div class="speaker-box">
-                            <div class="speaker-thumb">
-                                <img src="img/images/5.jpg" alt="img">
-                            </div>
-                            <div class="speaker-overlay">
-                                <span>Creative</span>
-                                <h4><a href="portfolio-single.html">Eiusmod tempor</a></h4>
-                                <a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 pitem">
-                        <div class="speaker-box">
-                            <div class="speaker-thumb">
-                                <img src="img/images/6.jpg" alt="img">
-                            </div>
-                            <div class="speaker-overlay">
-                                <span>UX/UI</span>
-                                <h4><a href="portfolio-single.html">again there</a></h4>
-                                <a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach ?>
+
                 </div>
             </div>
         </section>
@@ -454,12 +412,12 @@ $header_info = mysqli_fetch_assoc($header_infos);
                         </div>
                         <div class="contact-content">
                             <p>Event definition is - somthing that happens occurre How evesnt sentence. Synonym when an unknown printer took a galley.</p>
-                            <h5>OFFICE IN <span>NEW YORK</span></h5>
+                            <h5>OFFICE IN <span><?= $address['city'] ?></span></h5>
                             <div class="contact-list">
                                 <ul>
-                                    <li><i class="fas fa-map-marker"></i><span>Address :</span>Event Center park WT 22 New York</li>
-                                    <li><i class="fas fa-headphones"></i><span>Phone :</span>+9 125 645 8654</li>
-                                    <li><i class="fas fa-globe-asia"></i><span>e-mail :</span>info@exemple.com</li>
+                                    <li><i class="fas fa-map-marker"></i><span>Address :</span><?= $address['address'] ?></li>
+                                    <li><i class="fas fa-headphones"></i><span>Phone : </span><?= $address['phone'] ?></li>
+                                    <li><i class="fas fa-globe-asia"></i><span>e-mail :</span> <?= $address['email'] ?></li>
                                 </ul>
                             </div>
                         </div>
@@ -494,7 +452,7 @@ $header_info = mysqli_fetch_assoc($header_infos);
                                 <input type="text" name="name" placeholder="your name *">
                                 <input type="email" name="email" placeholder="your email *">
                                 <textarea name="message" id="message" placeholder="your message *"></textarea>
-                                <button class="btn">send messege</button>
+                                <button type="submit" class="btn">send messege</button>
                             </form>
                         </div>
                     </div>

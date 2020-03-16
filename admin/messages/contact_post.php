@@ -18,17 +18,18 @@ $name = test_input($_POST['name']);
 $email = test_input($_POST['email']);
 $message = test_input($_POST['message']);
 
-if (!empty($name) || !empty($email) || !empty($message)) {
+if (!empty($name) && !empty($email) && !empty($message)) {
     $insert = "INSERT INTO `messages`(`name`, `email`, `message`) VALUES ('$name','$email','$message')";
     $sql = mysqli_query($db_connect, $insert);
 
     if ($sql === TRUE) {
         $_SESSION["smsg"] = "The message is successfully sent.";
-        //go to preview page
-        header('Location: ' . $_SERVER['HTTP_REFERER'] . "#contact");
     } else {
         $_SESSION["emsg"] = "An error occurred!";
-        //go to preview page
-        header('Location: ' . $_SERVER['HTTP_REFERER'] . "#contact");
     }
+} else {
+    $_SESSION["emsg"] = "Empty fields!";
 }
+
+//go to preview page
+header('Location: ' . $_SERVER['HTTP_REFERER'] . "#contact");

@@ -49,6 +49,14 @@ $address = mysqli_fetch_assoc($address_sql);
 $select_brands = "SELECT * FROM `brands` WHERE `status` = 1";
 $brands_sql = mysqli_query($db_connect, $select_brands);
 
+/* Brand Image */
+$select_testimonials = "SELECT * FROM `testimonials` WHERE `status` = 1";
+$testimonials_sql = mysqli_query($db_connect, $select_testimonials);
+
+/* Copyright Section */
+$select_copyrights = "SELECT * FROM `copyright` WHERE `id` = 1";
+$copyrights_sql = mysqli_query($db_connect, $select_copyrights);
+$copyright = mysqli_fetch_assoc($copyrights_sql);
 
 ?>
 
@@ -334,30 +342,20 @@ $brands_sql = mysqli_query($db_connect, $select_brands);
                 <div class="row justify-content-center">
                     <div class="col-xl-9 col-lg-10">
                         <div class="testimonial-active">
-                            <div class="single-testimonial text-center">
-                                <div class="testi-avatar">
-                                    <img src="img/images/testi_avatar.png" alt="img">
-                                </div>
-                                <div class="testi-content">
-                                    <h4><span>“</span> An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result <span>”</span></h4>
-                                    <div class="testi-avatar-info">
-                                        <h5>tonoy jakson</h5>
-                                        <span>head of idea</span>
+                            <?php foreach ($testimonials_sql as $testimonial) : ?>
+                                <div class="single-testimonial text-center">
+                                    <div class="testi-avatar">
+                                        <img src="img/testi_avatar/<?= $testimonial['img_dir'] ?>" alt="img" width="150" height="150" style="object-fit: cover; border-radius:50%">
+                                    </div>
+                                    <div class="testi-content">
+                                        <h4><span>“</span><?= $testimonial['msg'] ?><span>”</span></h4>
+                                        <div class="testi-avatar-info">
+                                            <h5><?= $testimonial['name'] ?></h5>
+                                            <span><?= $testimonial['designation'] ?></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="single-testimonial text-center">
-                                <div class="testi-avatar">
-                                    <img src="img/images/testi_avatar.png" alt="img">
-                                </div>
-                                <div class="testi-content">
-                                    <h4><span>“</span> An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result <span>”</span></h4>
-                                    <div class="testi-avatar-info">
-                                        <h5>tonoy jakson</h5>
-                                        <span>head of idea</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php endforeach ?>
                         </div>
                     </div>
                 </div>
@@ -430,9 +428,9 @@ $brands_sql = mysqli_query($db_connect, $select_brands);
                             <?php endif;
                             unset($_SESSION["emsg"]) ?>
                             <form action="/admin/messages/contact_post.php" method="POST">
-                                <input type="text" name="name" placeholder="your name *">
-                                <input type="email" name="email" placeholder="your email *">
-                                <textarea name="message" id="message" placeholder="your message *"></textarea>
+                                <input type="text" name="name" placeholder="your name *" required>
+                                <input type="email" name="email" placeholder="your email *" required>
+                                <textarea name="message" id="message" placeholder="your message *" required></textarea>
                                 <button type="submit" class="btn">send messege</button>
                             </form>
                         </div>
@@ -452,7 +450,7 @@ $brands_sql = mysqli_query($db_connect, $select_brands);
                 <div class="row align-items-center">
                     <div class="col-12">
                         <div class="copyright-text text-center">
-                            <p>Copyright© <span>Kufa</span> | All Rights Reserved</p>
+                            <p>Copyright© <span><?= $copyright['copyright_name'] ?></span> | All Rights Reserved</p>
                         </div>
                     </div>
                 </div>

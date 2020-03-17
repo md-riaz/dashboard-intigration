@@ -134,6 +134,18 @@
                     <p>Brand Logo's</p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/testimonial/testimonial.php">
+                    <i class="material-icons">speaker_notes</i>
+                    <p>Testimonials</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/copyright/">
+                    <i class="material-icons">copyright</i>
+                    <p>Copyright Section</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

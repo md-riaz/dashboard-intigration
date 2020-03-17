@@ -1,5 +1,5 @@
 <head>
-    <title>Best Works</title>
+    <title>Testimonials</title>
 </head>
 <?php
 //  include header file
@@ -7,8 +7,8 @@ include '../dashboard_includes/session_check.php';
 include '../dashboard_includes/header.php';
 include '../dashboard_includes/sidebar.php';
 include '../dashboard_includes/topNav.php';
-$select_portfolio = "SELECT * FROM `portfolio`";
-$sql = mysqli_query($db_connect, $select_portfolio);
+$select_testimonials = "SELECT * FROM `testimonials`";
+$sql = mysqli_query($db_connect, $select_testimonials);
 function status($status)
 {
     echo $status == 1 ? "Checked" : "";
@@ -23,56 +23,20 @@ function status($status)
             <div class="col-lg-12">
 
                 <div class="card card-nav-tabs">
-                    <h4 class="card-header card-header-primary">All Portfolio Works</h4>
+                    <h4 class="card-header card-header-primary">All Testimonials</h4>
                     <div class="card-body">
                         <!-- if session found echo that with alert -->
-                        <?php if (isset($_SESSION["err01"])) : ?>
+                        <?php if (isset($_SESSION["err"])) : ?>
 
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Oh No! </strong> <?= $_SESSION["err01"] ?>
+                                <strong>Oh No! </strong> <?= $_SESSION["err"] ?>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
 
                         <?php endif;
-                        unset($_SESSION["err01"]) ?>
-                        <!-- if session found echo that with alert -->
-                        <?php if (isset($_SESSION["err02"])) : ?>
-
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Oh No! </strong> <?= $_SESSION["err02"] ?>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                        <?php endif;
-                        unset($_SESSION["err02"]) ?>
-                        <!-- if session found echo that with alert -->
-                        <?php if (isset($_SESSION["err03"])) : ?>
-
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Oh No! </strong> <?= $_SESSION["err03"] ?>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                        <?php endif;
-                        unset($_SESSION["err03"]) ?>
-                        <!-- if session found echo that with alert -->
-                        <?php if (isset($_SESSION["err04"])) : ?>
-
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Oh No! </strong> <?= $_SESSION["err04"] ?>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                        <?php endif;
-                        unset($_SESSION["err04"]) ?>
+                        unset($_SESSION["err"]) ?>
 
                         <!-- if session found echo that with alert -->
                         <?php if (isset($_SESSION["smsg"])) : ?>
@@ -91,10 +55,10 @@ function status($status)
                             <thead class="text-primary">
                                 <tr>
                                     <th>Sl</th>
-                                    <th>Category</th>
-                                    <th>Project Name</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
+                                    <th>Photo</th>
+                                    <th>Name</th>
+                                    <th>Comment/Message</th>
+                                    <th>Designation</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -102,30 +66,30 @@ function status($status)
                             <tbody>
                                 <!-- Loop through all rows from database -->
                                 <?php $count = 1;
-                                foreach ($sql as $portfolio) : ?>
+                                foreach ($sql as $testimonial) : ?>
                                     <tr>
                                         <!-- echo a colunm -->
                                         <td><?= $count++ ?></td>
-                                        <td><?= $portfolio['category'] ?></td>
-                                        <td><?= $portfolio['project_name'] ?></td>
-                                        <td><?= $portfolio['title'] ?></td>
-                                        <td><?= substr($portfolio['desp'], 0, 150) . "..." ?></td>
+                                        <td><img src="/img/testi_avatar/<?= $testimonial['img_dir'] ?>" alt="" width="100" height="100" style="object-fit: cover"></td>
+                                        <td><?= $testimonial['name'] ?></td>
+                                        <td><?= substr($testimonial['msg'], 0, 100) . "..." ?></td>
+                                        <td><?= $testimonial['designation'] ?></td>
                                         <td> <label class="switch">
-                                                <a href="/admin/portfolio/portfolio-post.php?id=<?= $portfolio['id'] ?>&p=status">
-                                                    <input type="checkbox" name="status" <?= status($portfolio['status']) ?>>
+                                                <a href="/admin/testimonial/testimonial-post.php?id=<?= $testimonial['id'] ?>&p=status">
+                                                    <input type="checkbox" name="status" <?= status($testimonial['status']) ?>>
                                                     <span class="slider round"></span>
                                                 </a>
                                             </label>
                                         </td>
                                         <td class="text-center">
                                             <!-- pass the value of id with session -->
-                                            <a data-toggle="modal" data-target="#deleteModal" title="Delete" id="dlbtn" onclick="dltfn(<?= $portfolio['id'] ?>)"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                            <a data-toggle="modal" data-target="#deleteModal" title="Delete" id="dlbtn" onclick="dltfn(<?= $testimonial['id'] ?>)"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
                         </table>
-                        <a data-toggle="modal" data-target="#portfolio_triger" class="btn bg-primary text-white"><span>Add New Work</span></a>
+                        <a data-toggle="modal" data-target="#portfolio_triger" class="btn bg-primary text-white"><span>Add Testimonial</span></a>
 
                     </div>
                 </div>
@@ -156,36 +120,31 @@ function status($status)
 <!-- Modal End -->
 <!-- Modal -->
 
-<form action="/admin/portfolio/portfolio-post.php?p=portfolio" method="post" enctype="multipart/form-data">
+<form action="/admin/testimonial/testimonial-post.php?p=testimonial" method="post" enctype="multipart/form-data">
     <div class="modal fade" id="portfolio_triger" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New Work</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Testimonial</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Category</label>
-                        <input type="text" class="form-control" name="category" required>
-                    </div>
-                    <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Project Name</label>
-                        <input type="text" class="form-control" name="project_name" required>
-                    </div>
-                    <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Title</label>
-                        <input type="text" class="form-control" name="title" required>
-                    </div>
-                    <label class="bmd-label-floating">Project Image</label>
+                    <label class="bmd-label-floating">Display Picture</label>
                     <input type="file" name="img" required>
-                    <label class="bmd-label-floating">Project Details Image</label>
-                    <input type="file" name="img2" required>
                     <div class="form-group bmd-form-group">
-                        <label class="bmd-label-floating">Description</label>
-                        <textarea class="form-control" name="desp" cols="30" rows="10" required></textarea>
+                        <label class="bmd-label-floating">Name</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="form-group bmd-form-group">
+                        <label class="bmd-label-floating">Designation</label>
+                        <input type="text" class="form-control" name="designation" required>
+                    </div>
+
+                    <div class="form-group bmd-form-group">
+                        <label class="bmd-label-floating">Comment/Message</label>
+                        <textarea class="form-control" name="msg" cols="30" rows="5" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -201,7 +160,7 @@ function status($status)
 <script>
     // select model a tag and set href attr
     function dltfn(id) {
-        $(".dlt").attr("href", "/admin/portfolio/portfolio-post.php?p=delete&id=" + id);
+        $(".dlt").attr("href", "/admin/testimonial/testimonial-post.php?p=delete&id=" + id);
     }
 </script>
 <?php

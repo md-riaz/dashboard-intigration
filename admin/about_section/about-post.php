@@ -27,8 +27,8 @@ if ($page == "update") {
         //set source path to a variable.
         $source_path = $_FILES['aboutImg']['tmp_name'];
         // Allow certain file formats
-        if ($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png") {
-            $_SESSION["err"] = "Sorry, only JPG/JPEG & PNG files are allowed.";
+        if ($imageFileType != "png") {
+            $_SESSION["err"] = "Sorry, PNG files are allowed.";
             $uploadOk = 0;
         }
         // Allow below 1mb dile size

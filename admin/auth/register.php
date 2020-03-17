@@ -16,6 +16,10 @@ if (!isset($_SESSION["email"]) || !isset($_SESSION["username"]) || !isset($_SESS
         height: 100%;
     }
 
+    .main-panel {
+        width: 100% !important;
+    }
+
     .container {
         min-height: calc(100% - 100px);
         margin-bottom: -100px;

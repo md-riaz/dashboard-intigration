@@ -49,7 +49,7 @@ $address = mysqli_fetch_assoc($address_sql);
 $select_brands = "SELECT * FROM `brands` WHERE `status` = 1";
 $brands_sql = mysqli_query($db_connect, $select_brands);
 
-/* Brand Image */
+/* Testimonial */
 $select_testimonials = "SELECT * FROM `testimonials` WHERE `status` = 1";
 $testimonials_sql = mysqli_query($db_connect, $select_testimonials);
 

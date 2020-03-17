@@ -14,7 +14,7 @@ $target_file = '../dashboard_assets/user_img/' . $id . "." . $imageFileType;
 $uploadOk = 1; //if condition is not fullfilled set this to 0 to stop upload.
 
 
-if (isset($_FILES["ProfileImage"])) {
+if ($_FILES['ProfileImage']['size'] != 0) {
 
     //set source path to a variable.
     $source_path = $_FILES['ProfileImage']['tmp_name'];
@@ -66,6 +66,7 @@ $username = test_input($_POST['username']);
 $email = test_input($_POST['email']);
 $name = test_input($_POST['name']);
 $university = test_input($_POST['university']);
+$role = test_input($_POST['role']);
 $about = test_input($_POST['about']);
 
 //if any error increment this
@@ -132,7 +133,8 @@ if ($err != 0 || $uploadOk != 1) {
             `emails` = '$email', 
             `names` = '$name',  
             `university` = '$university', 
-            `about` = '$about' 
+            `about` = '$about',
+            `role` = '$role' 
             WHERE `id` = '$id'";
 
             $run_query = mysqli_query($db_connect, $update_data);

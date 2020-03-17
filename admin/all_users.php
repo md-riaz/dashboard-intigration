@@ -48,7 +48,7 @@ $run_query = mysqli_query($db_connect, $select_data);
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title">Student Stats</h4>
-                        <p class="card-category">New Students on 15th September, 2016</p>
+                        <!-- <p class="card-category">New Students on 15th September, 2016</p> -->
                     </div>
                     <div class="card-body table-responsive">
                         <table class="table table-hover">

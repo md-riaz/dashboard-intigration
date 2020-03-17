@@ -107,6 +107,21 @@ $user = mysqli_fetch_assoc($run_query);
                                 <?php endif;
                                 unset($_SESSION["unierr"]) ?>
                             </div>
+                            <?php if ($_SESSION["role"] == 1) : ?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="my-select">Select a role</label>
+                                            <select id="my-select" class="custom-select" name="role">
+                                                <option value="0">user</option>
+                                                <option value="1">admin</option>
+                                                <option value="2">moderator</option>
+                                                <option value="3">editor</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif ?>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="avatar">
@@ -183,7 +198,6 @@ $user = mysqli_fetch_assoc($run_query);
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>About Me</label>
                                         <div class="form-group bmd-form-group">
                                             <label class="bmd-label-floating"> Tell us about yourself</label>
                                             <textarea class="form-control" rows="5" name="about"><?= $user['about']; ?></textarea>

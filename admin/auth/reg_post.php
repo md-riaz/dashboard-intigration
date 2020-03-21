@@ -88,9 +88,7 @@ if (!$pass_check || strlen($pass) < 8) {
 }
 
 // if any error found then go to previews page else check data for duplicates and if no duplicate then insert to database
-if ($o != 0) {
-    header("location:/admin/auth/register.php");
-} else {
+if ($o == 0) {
     //Check email for double in database
     $check_double = "SELECT COUNT(*) as duplicate FROM `users` WHERE emails = '$email'";
     $query_result = mysqli_query($db_connect, $check_double);
@@ -102,22 +100,27 @@ if ($o != 0) {
 
     //if error found, show error messeger
     if ($get_data['duplicate'] == 1) {
-        header("location:/admin/auth/register.php");
         $_SESSION["emDerr"] = "Email is already exist!!";
     } else {
         //if error found, show error messeger
         if ($get_data_username['duplicate'] == 1) {
-            header("location:/admin/auth/register.php");
             $_SESSION["uDerr"] = "Username is already exist!!";
         } else {
             // insert data to database
             $insert_data = "INSERT INTO `users`(`usernames`,`emails`, `names`,`university`, `passwords`, `gender`) VALUES ('$username','$email', '$name','$university', '$hash_pass', '$gender')";
             $run_query = mysqli_query($db_connect, $insert_data);
-
             if ($run_query === TRUE) {
-                $_SESSION["success"] = "You have successfully registered. Go to SIGN IN page & login";
-                header("location:/admin/auth/register.php");
+                if (isset($_SESSION["login"])) {
+                    $_SESSION["success"] = "New user added.";
+                } else {
+                    $_SESSION["success"] = "You have successfully registered. Go to SIGN IN page & login";
+                }
             }
         }
     }
+}
+if (isset($_SESSION["login"])) {
+    header("location: /admin/all_users.php");
+} else {
+    header("location:/admin/auth/register.php");
 }

@@ -2,6 +2,7 @@
     <title>Registration</title>
 </head>
 <?php
+session_start();
 //  include header file
 include '../dashboard_includes/header.php';
 if (!isset($_SESSION["email"]) || !isset($_SESSION["username"]) || !isset($_SESSION["name"]) || !isset($_SESSION["university"])) {
@@ -11,6 +12,7 @@ if (!isset($_SESSION["email"]) || !isset($_SESSION["username"]) || !isset($_SESS
     $_SESSION["university"] = "";
 }
 ?>
+
 <style>
     body {
         height: 100%;
@@ -50,8 +52,8 @@ if (!isset($_SESSION["email"]) || !isset($_SESSION["username"]) || !isset($_SESS
                     <!-- if session found echo that with alert -->
                     <?php if (isset($_SESSION["success"])) : ?>
 
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Congrats! </strong> <?= $_SESSION["success"] ?>
+                        <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                            <?= $_SESSION["success"] ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 //  include header file
@@ -38,5 +37,5 @@ if (!empty($icon) && !empty($project_num) && !empty($topic)) {
     $_SESSION["err"] = "Empty!!";
 }
 
-header("location: /admin/fact_area_section/add-fact.php");
+header("location:/admin/fact_area_section/add-fact.php");
 ?>

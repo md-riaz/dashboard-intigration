@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 //  include header file
@@ -33,14 +32,12 @@ if (!empty($title) && !empty($cta_btn) && !empty($description)) {
     $run_query = mysqli_query($db_connect, $insert_data);
     if ($run_query === TRUE) {
         $_SESSION["success"] = "Header Info Added SuccessFully";
-        header("location: /admin/header_section/add-header.php");
     } else {
         $_SESSION["err"] = "Error occurred!!";
-        header("location: /admin/header_section/add-header.php");
     }
 } else {
     $_SESSION["err"] = "Empty!!";
-    header("location: /admin/header_section/add-header.php");
 }
 
+    header("location: /admin/header_section/add-header.php");
 ?>

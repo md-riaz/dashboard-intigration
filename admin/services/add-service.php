@@ -1,6 +1,3 @@
-<head>
-    <title>Add Service</title>
-</head>
 <?php
 //  include header file
 include '../dashboard_includes/session_check.php';
@@ -9,6 +6,9 @@ include '../dashboard_includes/sidebar.php';
 include '../dashboard_includes/topNav.php';
 
 ?>
+<head>
+    <title>Add Service</title>
+</head>
 
 <div class="content">
     <div class="container-fluid">

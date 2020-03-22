@@ -38,7 +38,7 @@ if ($page == "brand") {
 
         if (!$uploadOk == 0) {
             if (move_uploaded_file($source_path, $target_file)) {
-                $_SESSION["smsg"] = "The image " . basename($_FILES["brandImg"]["name"]) . " has been set as about image.";
+                $_SESSION["smsg"] = "The image " . basename($_FILES["brandImg"]["name"]) . " has been updated";
             } else {
                 $_SESSION["err"] = "Sorry, your image was not uploaded.";
             }
@@ -62,14 +62,14 @@ if ($page == "secondary") {
             $uploadOk = 0;
         }
         // Allow below 1mb dile size
-        if ($_FILES['secondaryimg']['size'] > 1000000) {
+        if ($_FILES['secondaryimg']['size'] > 1200000) {
             $_SESSION["err"] = "Sorry, file size should be lower than 1MB";
             $uploadOk = 0;
         }
 
         if (!$uploadOk == 0) {
             if (move_uploaded_file($source_path, $target_file)) {
-                $_SESSION["smsg"] = "The image " . basename($_FILES["secondaryimg"]["name"]) . " has been set as about image.";
+                $_SESSION["smsg"] = "The image " . basename($_FILES["secondaryimg"]["name"]) . " has been updated.";
             } else {
                 $_SESSION["err"] = "Sorry, your image was not uploaded.";
             }

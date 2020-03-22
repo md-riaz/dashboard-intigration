@@ -1,6 +1,3 @@
-<head>
-    <title>Edit Address</title>
-</head>
 <?php
 //  include header file
 include '../dashboard_includes/session_check.php';
@@ -12,6 +9,9 @@ $sql = mysqli_query($db_connect, $select_address);
 $address = mysqli_fetch_assoc($sql);
 
 ?>
+<head>
+    <title>Edit Address</title>
+</head>
 
 <div class="content">
     <div class="container-fluid">

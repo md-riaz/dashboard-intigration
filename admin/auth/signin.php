@@ -1,11 +1,11 @@
-<head>
-    <title>Sign In</title>
-</head>
 <?php
 session_start();
 //  include header file
 include '../dashboard_includes/header.php';
 ?>
+<head>
+    <title>Sign In</title>
+</head>
 <style>
     body {
         height: 100%;

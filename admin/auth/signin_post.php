@@ -20,12 +20,10 @@ $run_query = mysqli_query($db_connect, $select_data);
 $get_data = mysqli_fetch_assoc($run_query);
 
 
-
 if ($get_data['exist'] == 1) {
     $select_data = "SELECT * FROM `users` WHERE emails = '$email'";
     $run_query = mysqli_query($db_connect, $select_data);
     $get_data = mysqli_fetch_assoc($run_query);
-
     //Save values in session for later use
     $_SESSION["id"] = $get_data['id'];
     $_SESSION["usernames"] = $get_data['usernames'];
@@ -39,14 +37,14 @@ if ($get_data['exist'] == 1) {
 
     if (password_verify($pass, $get_data['passwords'])) {
         header("location:/admin/auth/dashboard.php");
-        //set cookie for 60 minutes
-        setcookie("login", "logged", time() + (86400 * 30), "/");
+        //set cookie for 1 Day
+        setcookie("login", "logged", time() + (86400 * 1), "/");
         $_SESSION["login"] = "logged";
+        
     } else {
-        header("location:/admin/auth/signin.php");
         $_SESSION["perr"] = "Password is wrong";
     }
 } else {
-    header("location:/admin/auth/signin.php");
     $_SESSION["err"] = "This email doesn't have an account";
 }
+// header("location:/admin/auth/signin.php");

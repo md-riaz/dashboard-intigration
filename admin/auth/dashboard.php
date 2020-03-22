@@ -1,17 +1,13 @@
-<head>
-  <title>Dashboard</title>
-</head>
 <?php
-//  include header file
+// <!-- include header file -->
 include '../dashboard_includes/session_check.php';
 include '../dashboard_includes/header.php';
 include '../dashboard_includes/sidebar.php';
 include '../dashboard_includes/topNav.php';
 ?>
-
-
-
-
+<head>
+  <title>Dashboard</title>
+</head>
 
 <div class="content">
   <div class="container-fluid">

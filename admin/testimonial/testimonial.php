@@ -1,6 +1,3 @@
-<head>
-    <title>Testimonials</title>
-</head>
 <?php
 //  include header file
 include '../dashboard_includes/session_check.php';
@@ -14,6 +11,9 @@ function status($status)
     echo $status == 1 ? "Checked" : "";
 }
 ?>
+<head>
+    <title>Testimonials</title>
+</head>
 
 <div class="content">
     <div class="container-fluid">

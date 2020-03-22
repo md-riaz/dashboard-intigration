@@ -57,26 +57,6 @@ if ($msg['status'] == 0) {
 </div>
 
 
-<div>
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</div>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -84,5 +64,6 @@ if ($msg['status'] == 0) {
 
 
 <?php
+
 include '../dashboard_includes/footer.php';
 ?>

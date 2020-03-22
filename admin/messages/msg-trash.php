@@ -1,6 +1,3 @@
-<head>
-    <title>Trash Messeges</title>
-</head>
 <?php
 //  include header file
 include '../dashboard_includes/session_check.php';
@@ -13,6 +10,9 @@ $select_data = "SELECT * FROM `messages` WHERE `status` = 2";
 //run that query
 $run_query = mysqli_query($db_connect, $select_data);
 ?>
+<head>
+    <title>Trash Messeges</title>
+</head>
 
 
 <div class="content">

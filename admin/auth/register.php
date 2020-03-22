@@ -1,6 +1,3 @@
-<head>
-    <title>Registration</title>
-</head>
 <?php
 session_start();
 //  include header file
@@ -12,7 +9,9 @@ if (!isset($_SESSION["email"]) || !isset($_SESSION["username"]) || !isset($_SESS
     $_SESSION["university"] = "";
 }
 ?>
-
+<head>
+    <title>Registration</title>
+</head>
 <style>
     body {
         height: 100%;

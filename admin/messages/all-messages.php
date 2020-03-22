@@ -1,6 +1,3 @@
-<head>
-    <title>All Messeges</title>
-</head>
 <?php
 //  include header file
 include '../dashboard_includes/session_check.php';
@@ -18,6 +15,9 @@ function status($status)
     echo $status == 0 ? "bold" : "normal";
 }
 ?>
+<head>
+    <title>All Messeges</title>
+</head>
 
 
 <div class="content">

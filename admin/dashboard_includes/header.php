@@ -1,5 +1,4 @@
 <?php
-
 include 'db.php';
 //Check role
 function role($role)

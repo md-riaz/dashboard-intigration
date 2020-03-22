@@ -1,6 +1,3 @@
-<head>
-    <title>Update Brand Image</title>
-</head>
 <?php
 //  include header file
 include '../dashboard_includes/session_check.php';
@@ -11,6 +8,13 @@ $select = "SELECT * FROM `logo` WHERE `id` = 1";
 $sql = mysqli_query($db_connect, $select);
 $data = mysqli_fetch_assoc($sql);
 ?>
+
+<head>
+    <title>Update Brand Image</title>
+</head>
+
+
+
 <div class="content">
     <div class="container-fluid">
         <!-- your content here -->

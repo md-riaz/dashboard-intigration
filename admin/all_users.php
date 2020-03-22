@@ -1,6 +1,3 @@
-<head>
-    <title>All Users</title>
-</head>
 <?php
 //  include header file
 include 'dashboard_includes/session_check.php';
@@ -13,6 +10,9 @@ $select_data = "SELECT * FROM `users`";
 //run that query
 $run_query = mysqli_query($db_connect, $select_data);
 ?>
+<head>
+    <title>All Users</title>
+</head>
 <div class="content">
     <div class="container-fluid">
         <!-- your content here -->

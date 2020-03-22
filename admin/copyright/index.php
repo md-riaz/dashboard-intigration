@@ -1,6 +1,3 @@
-<head>
-    <title>Edit Copyright</title>
-</head>
 <?php
 //  include header file
 include '../dashboard_includes/session_check.php';
@@ -12,6 +9,9 @@ $sql = mysqli_query($db_connect, $select_copyright);
 $copyright = mysqli_fetch_assoc($sql);
 
 ?>
+<head>
+    <title>Edit Copyright</title>
+</head>
 
 <div class="content">
     <div class="container-fluid">

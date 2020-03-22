@@ -16,8 +16,8 @@ $update_data = "UPDATE `fact_areas` SET `status`= $status WHERE `id` = $id";
 $run_query = mysqli_query($db_connect, $update_data);
 if ($run_query === TRUE) {
     $_SESSION["success"] = "Saved Changes";
-    header("location: /admin/fact_area_section/all-fact.php");
 } else {
     $_SESSION["err"] = "Error occurred!!";
-    header("location: /admin/fact_area_section/all-fact.php");
 }
+
+ header("location: /admin/fact_area_section/all-fact.php");

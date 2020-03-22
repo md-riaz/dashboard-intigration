@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 17, 2020 at 02:26 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Host: localhost
+-- Generation Time: Mar 22, 2020 at 10:19 AM
+-- Server version: 10.3.16-MariaDB
+-- PHP Version: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `riaz_db`
+-- Database: `id12955293_riaz_db`
 --
 
 -- --------------------------------------------------------
@@ -90,7 +90,7 @@ INSERT INTO `banner_img` (`id`, `img_dir`) VALUES
 CREATE TABLE `brands` (
   `id` int(11) NOT NULL,
   `img_dir` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -100,10 +100,10 @@ CREATE TABLE `brands` (
 INSERT INTO `brands` (`id`, `img_dir`, `status`) VALUES
 (1, 'brand_img189020184.png', 1),
 (2, 'brand_img1765930587.png', 1),
-(3, 'brand_img1861030869.png', 1),
 (4, 'brand_img1951450376.png', 1),
 (5, 'brand_img1521195910.png', 1),
-(6, 'brand_img2116383513.png', 1);
+(6, 'brand_img2116383513.png', 1),
+(10, 'brand_img555706429.png', 0);
 
 -- --------------------------------------------------------
 
@@ -144,7 +144,7 @@ CREATE TABLE `fact_areas` (
 INSERT INTO `fact_areas` (`id`, `icon`, `project_numbers`, `project_topic`, `status`) VALUES
 (5, 'fas fa-award', '245', 'FEATURE ITEM', 1),
 (6, 'far fa-thumbs-up', '345', 'ACTIVE PRODUCTS', 1),
-(8, 'fas fa-female', '3000', 'OUR CLIENTS', 0);
+(8, 'fas fa-female', '3000', 'OUR CLIENTS', 1);
 
 -- --------------------------------------------------------
 
@@ -154,10 +154,10 @@ INSERT INTO `fact_areas` (`id`, `icon`, `project_numbers`, `project_topic`, `sta
 
 CREATE TABLE `header` (
   `id` int(11) NOT NULL,
-  `header_title` varchar(20) NOT NULL,
-  `header_desp` varchar(100) NOT NULL,
-  `cta_btn` varchar(20) NOT NULL,
-  `status` int(2) NOT NULL
+  `header_title` varchar(100) NOT NULL,
+  `header_desp` varchar(255) NOT NULL,
+  `cta_btn` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -206,7 +206,7 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `name`, `email`, `message`, `status`) VALUES
-(1, 'MD RIAZ', 'riazmd582@gmail.com', 'Hi this is just for testing', 0),
+(1, 'MD RIAZ', 'riazmd582@gmail.com', 'Hi this is just for testing', 1),
 (3, 'established', 'established@hotmail.com', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable.', 1);
 
 -- --------------------------------------------------------
@@ -217,13 +217,13 @@ INSERT INTO `messages` (`id`, `name`, `email`, `message`, `status`) VALUES
 
 CREATE TABLE `portfolio` (
   `id` int(11) NOT NULL,
-  `category` varchar(50) NOT NULL,
-  `project_name` varchar(100) NOT NULL,
-  `title` varchar(100) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `project_name` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `desp` text NOT NULL,
-  `img_dir` varchar(100) NOT NULL,
-  `img_dir2` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL
+  `img_dir` varchar(100) DEFAULT NULL,
+  `img_dir2` varchar(100) DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -232,8 +232,8 @@ CREATE TABLE `portfolio` (
 
 INSERT INTO `portfolio` (`id`, `category`, `project_name`, `title`, `desp`, `img_dir`, `img_dir2`, `status`) VALUES
 (1, 'DESIGN', 'HAMBLE TRIANGLE', 'CONSECTETUR NEQUE ELIT QUIS NUNC CRAS ELEMENTUM', 'Express dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae condimem egestliberos dolor auctor tellus, eu consectetur neque e...', 'p1.jpg', 'portfolio_details1.jpg', 1),
-(2, 'VIDEO', 'DARK BEAUTY', 'CONSECTETUR NEQUE ELIT QUIS NUNC CRAS ELEMENTUM', 'Express dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae condimem egestliberos dolor auctor tellus, eu consectetur neque e...', 'p2.jpg', 'portfolio_details2.jpg', 0),
-(4, 'DESIGN', 'IPSUM WHICH', 'CONSECTETUR NEQUE ELIT QUIS NUNC CRAS ELEMENTUM', 'Express dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae condimem egestliberos dolor auctor tellus, eu consectetur neque e...', 'p4.jpg', 'portfolio_details4.jpg', 1),
+(2, 'VIDEO', 'DARK BEAUTY', 'CONSECTETUR NEQUE ELIT QUIS NUNC CRAS ELEMENTUM', 'Express dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae condimem egestliberos dolor auctor tellus, eu consectetur neque e...', 'p2.jpg', 'portfolio_details2.jpg', 1),
+(4, 'DESIGN', 'IPSUM WHICH', 'CONSECTETUR NEQUE ELIT QUIS NUNC CRAS ELEMENTUM', 'Express dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae condimem egestliberos dolor auctor tellus, eu consectetur neque e...', 'p4.jpg', 'portfolio_details4.jpg', 0),
 (5, 'CREATIVE', 'EIUSMOD TEMPOR', 'CONSECTETUR NEQUE ELIT QUIS NUNC CRAS ELEMENTUM', 'Express dolor sit amet, consectetur adipiscing elit. Cras sollicitudin, tellus vitae condimem egestliberos dolor auctor tellus, eu consectetur neque e...', 'p5.jpg', 'portfolio_details5.jpg', 0);
 
 -- --------------------------------------------------------
@@ -313,11 +313,11 @@ INSERT INTO `social` (`id`, `fb`, `twitter`, `insta`, `pinterest`) VALUES
 
 CREATE TABLE `testimonials` (
   `id` int(11) NOT NULL,
-  `img_dir` varchar(100) NOT NULL,
+  `img_dir` varchar(100) DEFAULT NULL,
   `msg` varchar(255) NOT NULL,
   `name` varchar(100) NOT NULL,
   `designation` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -326,8 +326,8 @@ CREATE TABLE `testimonials` (
 
 INSERT INTO `testimonials` (`id`, `img_dir`, `msg`, `name`, `designation`, `status`) VALUES
 (1, 'testi_avatar1.jpg', 'An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result', 'tonoy jakson', 'head of idea', 1),
-(2, 'testi_avatar2.jpg', 'An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result', 'tonoy jakson', 'head of idea', 1),
-(5, 'testi_avatar5.png', 'An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result', 'Terrye Brotheridge', 'Head of Managment', 1);
+(5, 'testi_avatar5.png', 'An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result', 'Terrye Brotheridge', 'Head of Managment', 1),
+(6, 'testi_avatar6.png', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'MD RIAZ', 'head of idea', 1);
 
 -- --------------------------------------------------------
 
@@ -477,7 +477,7 @@ ALTER TABLE `banner_img`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `copyright`
@@ -489,13 +489,13 @@ ALTER TABLE `copyright`
 -- AUTO_INCREMENT for table `fact_areas`
 --
 ALTER TABLE `fact_areas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `header`
 --
 ALTER TABLE `header`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `logo`
@@ -513,13 +513,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `skillbar`
@@ -537,13 +537,13 @@ ALTER TABLE `social`
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

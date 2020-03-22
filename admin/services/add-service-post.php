@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 //  include header file
@@ -32,14 +31,11 @@ if (!empty($icon_class) && !empty($title) && !empty($description)) {
 
     if ($run_query === TRUE) {
         $_SESSION["success"] = "Service Added SuccessFully";
-        header("location: /admin/services/add-service.php");
     } else {
         $_SESSION["err"] = "Error occurred!!";
-        header("location: /admin/services/add-service.php");
     }
 } else {
     $_SESSION["err"] = "Empty!!";
-    header("location: /admin/services/add-service.php");
 }
-
+header("location: /admin/services/add-service.php");
 ?>

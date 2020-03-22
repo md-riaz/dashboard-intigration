@@ -26,6 +26,7 @@ if ($page == "brand") {
                     if (move_uploaded_file($source_path, $target_file)) {
                         $insert = "INSERT INTO `brands`(`img_dir`) VALUES ('$file_name')";
                         $sql = mysqli_query($db_connect, $insert);
+                       
                         if ($sql === TRUE) {
                             $_SESSION["smsg"] = "Brand Logo Added.";
                         }

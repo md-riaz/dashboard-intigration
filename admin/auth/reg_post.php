@@ -109,12 +109,17 @@ if ($o == 0) {
             // insert data to database
             $insert_data = "INSERT INTO `users`(`usernames`,`emails`, `names`,`university`, `passwords`, `gender`) VALUES ('$username','$email', '$name','$university', '$hash_pass', '$gender')";
             $run_query = mysqli_query($db_connect, $insert_data);
+            
+            
+            
             if ($run_query === TRUE) {
                 if (isset($_SESSION["login"])) {
                     $_SESSION["success"] = "New user added.";
                 } else {
                     $_SESSION["success"] = "You have successfully registered. Go to SIGN IN page & login";
                 }
+            } else {
+               print_r($db_connect);
             }
         }
     }

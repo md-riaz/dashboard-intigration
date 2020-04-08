@@ -125,7 +125,8 @@ if ($err != 0 || $uploadOk != 1) {
             header("location:/admin/auth/edit_user_post.php?id=$id");
             $_SESSION["uDerr"] = "Username is already exist!!";
         } else {
-            // update data to database
+            if($role){
+                // update data to database
             $update_data =
                 "UPDATE `users` SET 
             `usernames`= '$username', 
@@ -136,7 +137,20 @@ if ($err != 0 || $uploadOk != 1) {
             `about` = '$about',
             `role` = '$role' 
             WHERE `id` = '$id'";
+            }else {
+                            // update data to database
+            $update_data =
+            "UPDATE `users` SET 
+            `usernames`= '$username', 
+            `img_dir`= '$img_dir', 
+            `emails` = '$email', 
+            `names` = '$name',  
+            `university` = '$university', 
+            `about` = '$about'
+            WHERE `id` = '$id'";
 
+            }
+            
             $run_query = mysqli_query($db_connect, $update_data);
 
 
@@ -145,6 +159,7 @@ if ($err != 0 || $uploadOk != 1) {
                 header("location:/admin/all_users.php");
             } else {
                 echo "failed to update";
+                print_r($db_connect);print_r($_SESSION);
                 header("location:/admin/auth/edit_user_post.php?id=$id");
             }
         }

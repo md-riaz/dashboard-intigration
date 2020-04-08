@@ -36,15 +36,16 @@ if ($get_data['exist'] == 1) {
     $_SESSION["role"] = $get_data['role'];
 
     if (password_verify($pass, $get_data['passwords'])) {
-        header("location:/admin/auth/dashboard.php");
         //set cookie for 1 Day
         setcookie("login", "logged", time() + (86400 * 1), "/");
         $_SESSION["login"] = "logged";
-        
+
+        header("location:/admin/auth/dashboard.php");
     } else {
         $_SESSION["perr"] = "Password is wrong";
+        header("location:/admin/auth/signin.php");
     }
 } else {
     $_SESSION["err"] = "This email doesn't have an account";
+    header("location:/admin/auth/signin.php");
 }
-// header("location:/admin/auth/signin.php");

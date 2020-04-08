@@ -1,3 +1,4 @@
+
 <style>
     .dropdown-toggle:after {
         position: absolute;
@@ -144,18 +145,6 @@
                 <a class="nav-link" href="/admin/copyright/">
                     <i class="material-icons">copyright</i>
                     <p>Copyright Section</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">
-                    <i class="material-icons"></i>
-                    <p></p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">
-                    <i class="material-icons"></i>
-                    <p></p>
                 </a>
             </li>
         </ul>

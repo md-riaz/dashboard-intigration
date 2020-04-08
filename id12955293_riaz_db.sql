@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.4
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 22, 2020 at 10:19 AM
+-- Generation Time: Apr 08, 2020 at 05:18 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.12
 
@@ -338,14 +338,14 @@ INSERT INTO `testimonials` (`id`, `img_dir`, `msg`, `name`, `designation`, `stat
 CREATE TABLE `users` (
   `id` int(255) NOT NULL,
   `usernames` varchar(255) NOT NULL,
-  `img_dir` varchar(255) NOT NULL,
+  `img_dir` varchar(255) DEFAULT NULL,
   `emails` varchar(255) NOT NULL,
   `names` varchar(255) NOT NULL,
   `university` varchar(255) NOT NULL,
   `passwords` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
-  `about` text NOT NULL,
-  `role` int(11) NOT NULL
+  `about` text DEFAULT NULL,
+  `role` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -353,9 +353,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `usernames`, `img_dir`, `emails`, `names`, `university`, `passwords`, `gender`, `about`, `role`) VALUES
-(5, 'abutalha', '', 'at@gmail.com', 'Abu Talha', 'BPI', '$2y$10$xk1rbIhnE4nJ5UKW/tAldu66u6OJAHp3Rn69xkAtz5U6KVXqM8qVS', 'Male', '', 2),
-(7, 'mdriaz', '7.jpg', 'riazmd582@gmail.com', 'MD RIAZ', 'BPI', '$2y$10$PNN38c5Gr35/uiR.5aagN.UwqYdrwbrxgOJxN3fzWom5zTl5dljGq', 'Male', '', 1),
-(8, 'aminulis', '', 'aminulds@gmail.com', 'Aminul Islam', 'BPI', '$2y$10$bxuCyS3dr.7CtrO9TYwB7.qtPKbOn9nSjuFMyPjjSxKVyAF2RXDbO', 'Male', '', 2);
+(2, 'mdriaz', '2.jpg', 'riazmd582@gmail.com', 'MD', 'MD RIAZ', '$2y$10$ujyQtrfHDYE5HClG7TNNI.eEUVBKoTtS0xk7TE8P3UxNXNXcUld9K', 'Male', '', 1);
 
 --
 -- Indexes for dumped tables
@@ -543,7 +541,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

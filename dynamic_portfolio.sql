@@ -2,10 +2,10 @@
 -- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 08, 2020 at 05:18 PM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.12
+-- Host: localhost:3306
+-- Generation Time: Aug 11, 2020 at 04:55 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `id12955293_riaz_db`
+-- Database: `dynamic_portfolio`
 --
 
 -- --------------------------------------------------------
@@ -90,7 +90,7 @@ INSERT INTO `banner_img` (`id`, `img_dir`) VALUES
 CREATE TABLE `brands` (
   `id` int(11) NOT NULL,
   `img_dir` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0
+  `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -223,7 +223,7 @@ CREATE TABLE `portfolio` (
   `desp` text NOT NULL,
   `img_dir` varchar(100) DEFAULT NULL,
   `img_dir2` varchar(100) DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT 0
+  `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -317,7 +317,7 @@ CREATE TABLE `testimonials` (
   `msg` varchar(255) NOT NULL,
   `name` varchar(100) NOT NULL,
   `designation` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0
+  `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -344,8 +344,8 @@ CREATE TABLE `users` (
   `university` varchar(255) NOT NULL,
   `passwords` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
-  `about` text DEFAULT NULL,
-  `role` int(11) DEFAULT 0
+  `about` text,
+  `role` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -353,7 +353,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `usernames`, `img_dir`, `emails`, `names`, `university`, `passwords`, `gender`, `about`, `role`) VALUES
-(2, 'mdriaz', '2.jpg', 'riazmd582@gmail.com', 'MD', 'MD RIAZ', '$2y$10$ujyQtrfHDYE5HClG7TNNI.eEUVBKoTtS0xk7TE8P3UxNXNXcUld9K', 'Male', '', 1);
+(3, 'mdriaz', NULL, 'riazmd582@gmail.com', 'MD RIAZ', 'MD RIAZ', '$2y$10$bWLMsDRkk0aD/MdjTh434.RRhGkEotYsQJsW.4Ur5NvVGnpbq1oOm', 'Male', NULL, 0);
 
 --
 -- Indexes for dumped tables
@@ -457,7 +457,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `about`
 --
 ALTER TABLE `about`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `address`
@@ -487,13 +487,13 @@ ALTER TABLE `copyright`
 -- AUTO_INCREMENT for table `fact_areas`
 --
 ALTER TABLE `fact_areas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `header`
 --
 ALTER TABLE `header`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `logo`
@@ -511,19 +511,19 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `skillbar`
 --
 ALTER TABLE `skillbar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `social`
@@ -541,7 +541,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

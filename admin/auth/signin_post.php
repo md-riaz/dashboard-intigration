@@ -13,7 +13,7 @@ function test_input($data)
 $email = test_input($_POST['email']);
 $pass = test_input($_POST['password']);
 
-$select_data = "SELECT COUNT(*) as exist, id, usernames,img_dir,emails,names,role,about,university,gender FROM `users` WHERE emails = '$email'";
+$select_data = "SELECT COUNT(*) as exist, id, usernames,img_dir,emails,names,role,about,university,gender FROM `users` WHERE emails = '$email' GROUP BY id";
 
 //run that query
 $run_query = mysqli_query($db_connect, $select_data);

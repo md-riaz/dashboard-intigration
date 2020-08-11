@@ -1,7 +1,7 @@
 <?php
 session_start();
 //  include header file
-include '../dashboard_includes/header.php';
+require_once '../dashboard_includes/header.php';
 if (!isset($_SESSION["email"]) || !isset($_SESSION["username"]) || !isset($_SESSION["name"]) || !isset($_SESSION["university"])) {
     $_SESSION["email"] = "";
     $_SESSION["username"] = "";
@@ -221,5 +221,5 @@ if (!isset($_SESSION["email"]) || !isset($_SESSION["username"]) || !isset($_SESS
     </div>
 </div>
 <?php
-include '../dashboard_includes/footer.php';
+require_once '../dashboard_includes/footer.php';
 ?>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 //  include header file
-include '../dashboard_includes/db.php';
+require_once '../dashboard_includes/db.php';
 // define variables and set to empty values
 $city = $address = $num = $email = "";
 

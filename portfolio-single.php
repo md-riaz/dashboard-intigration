@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'admin/dashboard_includes/db.php';
+require_once 'admin/dashboard_includes/db.php';
 $id = $_GET["id"];
 /* Portfolio */
 $select_portfolio = "SELECT * FROM `portfolio` WHERE `id` = $id";

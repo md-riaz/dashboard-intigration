@@ -1,6 +1,6 @@
 <?php
 
-include 'db.php';
+require_once 'db.php';
 //Select all data from messages table
 $count_msg = "SELECT COUNT(*) as totalmsg FROM `messages` WHERE `status` = 0";
 $msg_select = "SELECT * FROM `messages` WHERE `status` = 0";

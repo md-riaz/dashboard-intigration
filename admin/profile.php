@@ -45,5 +45,5 @@ include  'dashboard_includes/topNav.php';
 
 
 <?php
-include 'dashboard_includes/footer.php';
+require_once 'dashboard_includes/footer.php';
 ?>

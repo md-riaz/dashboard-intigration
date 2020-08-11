@@ -1,9 +1,9 @@
 <?php
 // <!-- include header file -->
-include '../dashboard_includes/session_check.php';
-include '../dashboard_includes/header.php';
-include '../dashboard_includes/sidebar.php';
-include '../dashboard_includes/topNav.php';
+require_once '../dashboard_includes/session_check.php';
+require_once '../dashboard_includes/header.php';
+require_once '../dashboard_includes/sidebar.php';
+require_once '../dashboard_includes/topNav.php';
 // get id value from url
 $id = $_GET["id"];
 //Select data from messages table whose id matches url id
@@ -65,5 +65,5 @@ if ($msg['status'] == 0) {
 
 <?php
 
-include '../dashboard_includes/footer.php';
+require_once '../dashboard_includes/footer.php';
 ?>

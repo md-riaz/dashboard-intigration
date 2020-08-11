@@ -1,39 +1,40 @@
 <?php
 session_start();
 //  include header file
-include '../dashboard_includes/header.php';
+require_once '../dashboard_includes/header.php';
 ?>
+
 <head>
     <title>Sign In</title>
 </head>
 <style>
-    body {
-        height: 100%;
-    }
+body {
+    height: 100%;
+}
 
-    .main-panel {
-        width: 100%;
-    }
+.main-panel {
+    width: 100%;
+}
 
-    .container {
-        min-height: calc(100% - 100px);
-        margin-bottom: -100px;
-    }
+.container {
+    min-height: calc(100% - 100px);
+    margin-bottom: -100px;
+}
 
-    .card {
-        margin: 100px 0 0 0;
-    }
+.card {
+    margin: 100px 0 0 0;
+}
 
-    .login_page {
-        display: inline-block;
-        margin: 10px;
-    }
+.login_page {
+    display: inline-block;
+    margin: 10px;
+}
 
-    footer {
-        position: relative;
-        height: 50px;
-        margin-top: 100px;
-    }
+footer {
+    position: relative;
+    height: 50px;
+    margin-top: 100px;
+}
 </style>
 <div class="container">
     <div class="row">
@@ -49,12 +50,12 @@ include '../dashboard_includes/header.php';
                             <!-- if session found echo that with alert -->
                             <?php if (isset($_SESSION["err"])) : ?>
 
-                                <div class="alert alert-info  alert-dismissible fade show" role="alert">
-                                    <?= $_SESSION["err"] ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+                            <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                <?= $_SESSION["err"] ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
 
                             <?php endif;
                             unset($_SESSION["err"]) ?>
@@ -69,12 +70,12 @@ include '../dashboard_includes/header.php';
                             <!-- if session found echo that with alert -->
                             <?php if (isset($_SESSION["perr"])) : ?>
 
-                                <div class="alert alert-info  alert-dismissible fade show" role="alert">
-                                    <?= $_SESSION["perr"] ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+                            <div class="alert alert-info  alert-dismissible fade show" role="alert">
+                                <?= $_SESSION["perr"] ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
 
                             <?php endif;
                             unset($_SESSION["perr"]) ?>
@@ -103,5 +104,5 @@ include '../dashboard_includes/header.php';
     </div>
 </div>
 <?php
-include '../dashboard_includes/footer.php';
+require_once '../dashboard_includes/footer.php';
 ?>

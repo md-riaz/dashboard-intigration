@@ -1,5 +1,5 @@
 <?php
-include '../dashboard_includes/db.php';
+require_once '../dashboard_includes/db.php';
 // get id value from url
 $id = $_GET["id"];
 //Select data from messages table whose id matches url id

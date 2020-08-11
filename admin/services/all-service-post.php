@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../dashboard_includes/db.php';
+require_once '../dashboard_includes/db.php';
 $id = $_GET["id"];
 $select = "SELECT * FROM `services` WHERE `id` = $id";
 $sql = mysqli_query($db_connect, $select);

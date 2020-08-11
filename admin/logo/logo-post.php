@@ -1,7 +1,7 @@
 <?php
 session_start();
 //  include header file
-include '../dashboard_includes/db.php';
+require_once '../dashboard_includes/db.php';
 $uploadOk = 1; //if condition is not fullfilled set this to 0 to stop upload.
 // define variables and set to empty values
 $page = "";

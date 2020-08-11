@@ -1,7 +1,7 @@
 <?php
 session_start();
 //  include header file
-include '../dashboard_includes/db.php';
+require_once '../dashboard_includes/db.php';
 // define variables and set to empty values
 $fb_id = $twitter_id = $insta_id = $pinterest_id = "";
 

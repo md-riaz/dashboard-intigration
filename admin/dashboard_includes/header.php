@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+require_once 'db.php';
 //Check role
 function role($role)
 {

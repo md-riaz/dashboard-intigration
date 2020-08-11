@@ -1,5 +1,5 @@
 <?php
-include '../dashboard_includes/db.php';
+require_once '../dashboard_includes/db.php';
 // get id value from url
 $id = $_GET["id"];
 //delete query syntax

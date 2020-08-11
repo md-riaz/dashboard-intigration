@@ -1,9 +1,9 @@
 <?php
 //  include header file
-include '../dashboard_includes/session_check.php';
-include '../dashboard_includes/header.php';
-include '../dashboard_includes/sidebar.php';
-include '../dashboard_includes/topNav.php';
+require_once '../dashboard_includes/session_check.php';
+require_once '../dashboard_includes/header.php';
+require_once '../dashboard_includes/sidebar.php';
+require_once '../dashboard_includes/topNav.php';
 
 //Select all data from messages table
 $select_data = "SELECT * FROM `messages` WHERE `status` = 2";
@@ -120,5 +120,5 @@ $run_query = mysqli_query($db_connect, $select_data);
     }
 </script>
 <?php
-include '../dashboard_includes/footer.php';
+require_once '../dashboard_includes/footer.php';
 ?>

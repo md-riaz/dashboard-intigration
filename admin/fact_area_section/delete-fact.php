@@ -1,5 +1,5 @@
 <?php
-include '../dashboard_includes/db.php';
+require_once '../dashboard_includes/db.php';
 session_start();
 // get id value from url
 $id = $_GET["id"];

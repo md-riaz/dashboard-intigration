@@ -1,7 +1,7 @@
 <?php
 session_start();
 //  include header file
-include '../dashboard_includes/db.php';
+require_once '../dashboard_includes/db.php';
 function test_input($data)
 {
     $data = trim($data);

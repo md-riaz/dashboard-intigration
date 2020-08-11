@@ -1,9 +1,9 @@
 <?php
 //  include header file
-include '../dashboard_includes/session_check.php';
-include '../dashboard_includes/header.php';
-include '../dashboard_includes/sidebar.php';
-include '../dashboard_includes/topNav.php';
+require_once '../dashboard_includes/session_check.php';
+require_once '../dashboard_includes/header.php';
+require_once '../dashboard_includes/sidebar.php';
+require_once '../dashboard_includes/topNav.php';
 //Select all data from users table
 $select_data = "SELECT * FROM `services`";
 //run that query
@@ -128,5 +128,5 @@ function status($status)
 
 
 <?php
-include '../dashboard_includes/footer.php';
+require_once '../dashboard_includes/footer.php';
 ?>
